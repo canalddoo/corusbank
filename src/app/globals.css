@@ -1,0 +1,2195 @@
+/* --- VARIABLES DE COULEURS --- */
+:root {
+  --color-yellow: #06a97d;
+  --color-black: #000000;
+  --color-bg-nav: #edeff3;       /* Fond gris/bleuté de la nav */
+  --color-bg-mobile-footer: #d9e1ec; /* Zone grise foncée en bas du mobile */
+  --color-bg-mobile-btn: #e1e8f0;    /* Boutons gris clair sur mobile */
+  --color-blue-active: #004b87;     /* Bordure de sélection active mobile */
+  --color-border-gray: #dcdcdc;     /* Séparateurs de lignes sur mobile */
+}
+
+/* --- SECTION HERO STYLE DE BASE --- */
+.hero-section {
+  width: 100%;
+  background-color: #ebf0f5; /* S'accorde parfaitement avec ton fond nav/footer */
+  padding: 60px 0;
+  overflow: hidden;
+}
+
+.hero-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 40px;
+  position: relative;
+}
+
+/* ZONE CONTENEUR DE SLIDE */
+.hero-slider {
+  position: relative;
+  width: 100%;
+  min-height: 450px;
+}
+
+.hero-slide {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease-in-out;
+  gap: 30px;
+}
+
+.hero-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+  position: relative;
+}
+
+/* BLOC TEXTE (GAUCHE) */
+.hero-content {
+  flex: 1;
+  max-width: 600px;
+}
+
+.hero-title {
+  font-size: 50px;
+  font-weight: 600;
+  line-height: 1.1;
+  color: #000000;
+  margin-bottom: 24px;
+}
+
+.hero-highlight {
+  font-weight: 800;
+  color: #000000;
+}
+
+.hero-subtitle {
+  font-size: 18px;
+  font-weight: 500;
+  color: #000000;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+.hero-warning {
+  font-size: 14px;
+  font-weight: 500;
+  color: #000000;
+  line-height: 1.4;
+  margin-bottom: 30px;
+}
+
+/* BOUTON JAUNE OVALE */
+.hero-btn {
+  background-color: var(--color-yellow, #0dad83);
+  color: #000000;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 40px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.2s;
+}
+.hero-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* BLOC IMAGE (DROITE) */
+.hero-image-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.hero-img {
+  max-width: 100%;
+  max-height: 420px;
+  object-fit: contain;
+}
+
+/* BADGE BLEU FLOTTANT (DIAPO 2) */
+.hero-badge {
+  position: absolute;
+  top: -10px;
+  left: 10%;
+  background-color: #0071c5;
+  color: #ffffff;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+  padding: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  z-index: 2;
+}
+
+/* SYSTEME DE NAVIGATION (DOTS + FLÈCHE PLAY) */
+.hero-navigation {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.hero-dots {
+  display: flex;
+  gap: 10px;
+}
+
+.hero-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #000000;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s;
+}
+
+.hero-dot.active {
+  background-color: var(--color-yellow, #09a77c);
+}
+
+.hero-next-arrow {
+  background: transparent;
+  border: none;
+  color: #000000;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+
+
+.hero-btn {
+  text-decoration: none; /* Évite que le lien soit souligné */
+  display: inline-flex;  /* Aligne correctement le texte et l'icône de la flèche */
+  align-items: center;
+  justify-content: center;
+  /* Garde tes propriétés existantes de padding, background, border-radius, etc. */
+}
+/* ==========================================================================
+   RESPONSIVE AVANCÉ : LES TEXTES EN HAUT & IMAGES EN BAS SUR MOBILE
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 42px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 30px 0;
+  }
+  
+  .hero-container {
+    padding: 0 20px;
+  }
+
+  .hero-slider {
+    min-height: auto;
+  }
+
+  .hero-slide {
+    flex-direction: column; /* Force l'alignement vertical */
+    text-align: left;
+    position: relative;
+    gap: 30px;
+    opacity: 0;
+    display: none;
+  }
+
+  .hero-slide.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  .hero-content {
+    width: 100%;
+    max-width: 100%;
+    order: 1; /* Le texte reste en haut */
+  }
+
+  .hero-title {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+
+  .hero-image-wrapper {
+    width: 100%;
+    order: 2; /* L'image descend en dessous */
+    justify-content: center;
+  }
+
+  .hero-img { 
+    height: auto; /* Redimensionnement de l'image sur écran mobile */
+    width: 85%;
+  }
+
+  .hero-badge {
+    width: 90px;
+    height: 90px;
+    font-size: 11px;
+    left: 5%;
+    top: -20px;
+  }
+
+  .hero-navigation {
+    justify-content: flex-start;
+    margin-top: 20px;
+  }
+}
+
+
+/* ==========================================================================
+   SECTION : 3 BONNES RAISONS DE CHOISIR BANK99 (DESKTOP PAR DÉFAUT)
+   ========================================================================== */
+.reasons-section {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 80px 0;
+}
+
+.reasons-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.reasons-main-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: #000000;
+  margin-bottom: 50px;
+  position: relative;
+  padding-top: 15px;
+  display: inline-block;
+}
+
+.reasons-main-title::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 140px;
+  height: 3px;
+  background-color: #000000;
+}
+
+.reasons-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.reason-card {
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.reason-image-box {
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+  width: 100%;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  margin-bottom: 24px;
+}
+
+.reason-image-box img {
+  height: 90px;
+  width: auto;
+  object-fit: contain;
+}
+
+.reason-content h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 12px;
+}
+
+.reason-content p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #334155;
+  font-weight: 500;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.reason-content p::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #e2e8f0;
+}
+
+.reasons-mobile-dots {
+  display: none;
+}
+/* ==========================================================================
+   VERSION RESPONSIVE STRICTE MOBILE (ALIGNEMENT VERTICAL DES BLOCS)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .reasons-section {
+    padding: 40px 0;
+  }
+
+  .reasons-container {
+    padding: 0 20px;
+  }
+
+  /* Titre principal centré */
+  .reasons-main-title {
+    font-size: 26px;
+    margin-bottom: 40px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .reasons-main-title::before {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* On empile les cartes verticalement les unes sous les autres */
+  .reasons-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 40px; /* Espace vertical entre chaque carte */
+  }
+
+  .reason-card {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  /* Le conteneur de l'image s'adapte à 100% de la largeur de l'écran */
+  .reason-image-box {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    margin-bottom: 16px;
+  }
+
+  /* L'icône reste centrée et garde de bonnes proportions */
+  .reason-image-box img {
+    height: 85px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  /* Marges internes pour protéger le texte contre tout débordement */
+  .reason-content {
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+
+  .reason-content h3 {
+    font-size: 22px;
+    margin-top: 12px;
+    margin-bottom: 10px;
+  }
+
+  .reason-content p {
+    font-size: 15px;
+    line-height: 1.6;
+    padding-bottom: 20px;
+    margin: 0;
+    width: 100%;
+    word-wrap: break-word; /* Évite les coupures de mots étranges */
+  }
+
+  /* Centrage de la ligne grise décorative sous chaque texte */
+  .reason-content p::after {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+  }
+
+  /* Masquage définitif des dots puisqu'il n'y a plus de slider horizontal */
+  .reasons-mobile-dots {
+    display: none !important;
+  }
+}
+
+
+/* ==========================================================================
+   SECTION CREDIT (DESKTOP)
+   ========================================================================== */
+.credit-section {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 60px 0;
+}
+
+.credit-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+/* Image à gauche */
+.credit-image-box {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.credit-image-box img {
+  width: 100%;
+  max-width: 550px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Contenu à droite */
+.credit-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Ligne noire au-dessus du titre */
+.credit-accent-line {
+  width: 100%;
+  max-width: 320px; /* Aligné sur la largeur du bloc de texte */
+  height: 3px;
+  background-color: #000000;
+  margin-bottom: 25px;
+}
+
+.credit-content h2 {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.25;
+  color: #000000;
+  margin-bottom: 25px;
+}
+
+.credit-content p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #000000;
+  font-weight: 500;
+  margin-bottom: 35px;
+  max-width: 500px;
+}
+
+/* Bouton Pilule Jaune */
+.btn-yellow-pill {
+  background-color: #05b485;
+  color: #000000;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 40px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  transition: opacity 0.2s ease;
+}
+
+.btn-yellow-pill:hover {
+  opacity: 0.9;
+}
+
+/* ==========================================================================
+   VERSION RESPONSIVE MOBILE
+   ========================================================================== */
+@media (max-width: 768px) {
+  .credit-section {
+    padding: 40px 0;
+  }
+
+  .credit-container {
+    padding: 0 20px;
+    flex-direction: column; /* Empilement vertical */
+    gap: 35px;
+  }
+
+  /* Le contenu textuel passe en premier pour la lecture mobile */
+  .credit-content {
+    order: 1;
+    width: 100%;
+  }
+
+  .credit-accent-line {
+    max-width: 100%; /* La ligne s'adapte à la largeur du mobile */
+  }
+
+  .credit-content h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  .credit-content p {
+    font-size: 15px;
+    margin-bottom: 25px;
+  }
+
+  .btn-yellow-pill {
+    width: 100%; /* Bouton pleine largeur sur mobile */
+    justify-content: center;
+  }
+
+  /* L'image passe en dessous sur mobile */
+  .credit-image-box {
+    order: 2;
+    width: 100%;
+  }
+
+  .credit-image-box img {
+    max-width: 100%;
+  }
+}
+
+
+/* ==========================================================================
+   SECTION "QUOI DE NEUF?" (DESKTOP)
+   ========================================================================== */
+.news-section {
+  width: 100%;
+  background-color: #f1f5f9; /* Fond gris clair uniforme comme sur la maquette */
+  padding: 60px 0 80px 0;
+}
+
+.news-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* En-tête avec la ligne noire supérieure */
+.news-header {
+  margin-bottom: 40px;
+}
+
+.news-accent-line {
+  width: 140px;
+  height: 3px;
+  background-color: #000000;
+  margin-bottom: 15px;
+}
+
+.news-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: #000000;
+  margin: 0;
+}
+
+/* Grille principale */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+/* Style d'une carte blanche */
+.news-card {
+  background-color: #ffffff;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Ombre légère sous les cartes */
+}
+
+/* Zone Image */
+.news-image-box {
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+}
+
+.news-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Contenu textuel centré sous l'image */
+.news-content {
+  padding: 30px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.news-content h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 14px;
+}
+
+.news-content p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #334155;
+  margin-bottom: 25px;
+  flex-grow: 1; /* Aligne les boutons si les hauteurs de texte diffèrent */
+}
+
+/* Bouton Pilule Jaune */
+.btn-yellow-news {
+  background-color: #06a97d;
+  color: #000000;
+  border: none;
+  padding: 12px 35px;
+  border-radius: 40px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.btn-yellow-news:hover {
+  opacity: 0.9;
+}
+
+/* ==========================================================================
+   VERSION RESPONSIVE MOBILE
+   ========================================================================== */
+@media (max-width: 960px) {
+  .news-grid {
+    grid-template-columns: repeat(2, 1fr); /* Passe à 2 colonnes sur tablette */
+    gap: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .news-section {
+    padding: 40px 0;
+  }
+
+  .news-container {
+    padding: 0 20px;
+  }
+
+  .news-accent-line {
+    margin-left: auto;
+    margin-right: auto; /* Centre la ligne sur mobile */
+  }
+
+  .news-title {
+    text-align: center;
+    font-size: 26px;
+  }
+
+  .news-grid {
+    grid-template-columns: 1fr; /* 1 seule colonne empilée sur mobile */
+    gap: 25px;
+  }
+
+  .news-image-box {
+    height: 200px; /* Légère réduction de l'image sur petit écran */
+  }
+
+  .news-content {
+    padding: 25px 20px;
+  }
+
+  .btn-yellow-news {
+    width: 100%; /* Bouton pleine largeur pour une action facile sur mobile */
+    text-align: center;
+  }
+}
+
+
+/* ==========================================================================
+   SECTION INFORMATIONS CLIENTS ING (DESKTOP)
+   ========================================================================== */
+.ing-services-section {
+  width: 100%;
+  background-color: #f1f5f9; /* Fond gris très clair uniforme */
+  padding: 80px 0;
+}
+
+.ing-services-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  gap: 80px; /* Grand espace entre l'image et le bloc de texte */
+}
+
+/* Image à gauche */
+.ing-services-image-box {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end; /* Aligne l'image vers le centre */
+}
+
+.ing-services-image-box img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Bloc de contenu à droite */
+.ing-services-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Ligne noire d'accentuation supérieure */
+.ing-accent-line {
+  width: 120px;
+  height: 3px;
+  background-color: #000000;
+  margin-bottom: 20px;
+}
+
+.ing-services-content h2 {
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #000000;
+  margin: 0 0 35px 0;
+}
+
+.ing-text-block h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #000000;
+  margin: 0 0 10px 0;
+}
+
+.ing-text-block p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #000000;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Style du lien "ici" */
+.ing-link {
+  color: #004b87;
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+.ing-link:hover {
+  opacity: 0.8;
+}
+
+/* ==========================================================================
+   VERSION RESPONSIVE MOBILE
+   ========================================================================== */
+@media (max-width: 768px) {
+  .ing-services-section {
+    padding: 50px 0;
+  }
+
+  .ing-services-container {
+    padding: 0 20px;
+    flex-direction: column; /* Empilement vertical sur mobile */
+    gap: 40px;
+  }
+
+  /* Le texte passe au-dessus sur mobile pour une meilleure hiérarchie */
+  .ing-services-content {
+    order: 1;
+    width: 100%;
+  }
+
+  .ing-services-content h2 {
+    font-size: 26px;
+    margin-bottom: 25px;
+  }
+
+  /* L'image passe en dessous */
+  .ing-services-image-box {
+    order: 2;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .ing-services-image-box img {
+    max-width: 100%;
+  }
+}
+
+
+/* ==========================================================================
+   SECTION : INTRODUCTION CALCULATEUR
+   ========================================================================== */
+
+.calc-intro-section {
+  padding: 40px 20px;
+  background-color: #ffffff;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.calc-intro-container {
+  max-width: 900px; /* Aligné pour garder le texte compact et lisible comme sur l'image */
+  width: 100%;
+  text-align: center;
+}
+
+.calc-intro-text {
+  font-size: 20px;
+  line-height: 1.6;
+  color: #000000;
+  font-weight: 500;
+  margin: 0;
+}
+
+.calc-intro-text strong {
+  font-weight: 700;
+}
+
+/* Ajustement Mobile */
+@media (max-width: 768px) {
+  .calc-intro-text {
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 0 10px;
+  }
+}
+
+
+
+/* ==========================================================================
+   SECTION DU CALCULATEUR DE PRÊT
+   ========================================================================== */
+
+.calculator-section {
+  padding: 60px 20px;
+  background-color: #f4f7f6; /* Fond de page gris très clair standard */
+  display: flex;
+  justify-content: center;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.calculator-container {
+  display: flex;
+  max-width: 1200px;
+  width: 100%;
+  gap: 25px;
+}
+
+/* --- STRUCTURE BLOC GAUCHE --- */
+.calculator-card-left {
+  flex: 1.3;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+/* Onglets */
+.calc-tabs {
+  display: flex;
+  background-color: #f4f7f6;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.calc-tab {
+  flex: 1;
+  padding: 20px;
+  background: #f4f7f6;
+  border: none;
+  font-size: 16px;
+  font-weight: 700;
+  color: #718096;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-transform: capitalize;
+  transition: all 0.2s ease;
+}
+
+.calc-tab.active {
+  background: #ffffff;
+  color: #000000;
+  border-radius: 8px 8px 0 0;
+  border-bottom: 3px solid transparent;
+}
+
+.tab-icon {
+  font-size: 18px;
+}
+
+/* Formulaire interne */
+.calc-form-content {
+  padding: 35px;
+}
+
+.calc-input-group {
+  margin-bottom: 35px;
+}
+
+.calc-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.calc-label-row label, .section-label {
+  font-size: 16px;
+  font-weight: 700;
+  color: #000000;
+}
+
+/* Info bulle point d'interrogation */
+.info-bubble {
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+  background-color: #0066cc;
+  color: #ffffff;
+  border-radius: 50%;
+  font-size: 11px;
+  align-items: center;
+  justify-content: center;
+  margin-left: 4px;
+  cursor: help;
+}
+
+/* Input boxes des montants (€) */
+.input-currency-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid #cbd5e0;
+  border-radius: 4px;
+  background: #ffffff;
+  padding: 8px 12px;
+  width: 160px;
+}
+
+.currency-symbol {
+  color: #a0aec0;
+  margin-right: 8px;
+  font-size: 15px;
+}
+
+.input-currency-wrapper input {
+  border: none;
+  width: 100%;
+  text-align: right;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000000;
+  outline: none;
+}
+
+/* Curseurs Sliders Jaunes */
+.calc-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: #cbd5e0;
+  outline: none;
+  margin: 15px 0 8px 0;
+}
+
+.calc-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  background: #06a97d; /* Jaune exact */
+  border: 2px solid #06a97d;
+  cursor: pointer;
+}
+
+.slider-bounds {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #000000;
+  font-weight: 600;
+}
+
+/* Boutons bascules (Réparer / Variable) */
+.interest-toggle-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.btn-toggle {
+  flex: 1;
+  padding: 15px;
+  border: none;
+  border-radius: 6px;
+  background-color: #edf2f7;
+  font-size: 16px;
+  font-weight: 700;
+  color: #000000;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-toggle.active {
+  background-color: #06a97d;
+}
+
+/* Grille sélecteur d'années (5, 10, 15, 20) */
+.years-selector-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.btn-year {
+  padding: 15px;
+  border: none;
+  border-radius: 6px;
+  background-color: #edf2f7;
+  font-size: 16px;
+  font-weight: 700;
+  color: #000000;
+  cursor: pointer;
+}
+
+.btn-year.active {
+  background-color: #06a97d;
+}
+
+
+/* --- STRUCTURE BLOC DROIT : RÉSULTATS --- */
+.calculator-card-right {
+  flex: 0.9;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+}
+
+.results-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #000000;
+  margin-bottom: 30px;
+  border-bottom: 3px solid #000000;
+  padding-bottom: 8px;
+  align-self: flex-start;
+  width: auto;
+}
+
+.results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.result-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  color: #000000;
+  font-weight: 600;
+}
+
+.result-item span {
+  color: #000000;
+}
+
+.result-item strong.value-black {
+  color: #000000;
+  font-weight: 700;
+}
+
+.results-divider {
+  border: 0;
+  height: 1px;
+  background-color: #e2e8f0;
+  margin: 30px 0;
+}
+
+/* Encadré Tarif Mensuel */
+.monthly-rate-box {
+  margin-bottom: 35px;
+}
+
+.box-label {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #000000;
+  font-weight: 700;
+  display: block;
+}
+
+.box-amount-row {
+  margin: 5px 0;
+}
+
+.big-amount {
+  font-size: 36px;
+  font-weight: 900;
+  color: #000000;
+}
+
+.box-subtext {
+  font-size: 13px;
+  color: #4a5568;
+  font-weight: 500;
+}
+
+/* Boutons d'action */
+.results-action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.btn-submit-action {
+  background-color: #06a97d;
+  color: #000000;
+  border: none;
+  padding: 16px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.btn-save-action {
+  background-color: transparent;
+  color: #000000;
+  border: 2px solid #000000;
+  padding: 16px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+
+/* ==========================================================================
+   RESPONSIVE (MOBILE COHÉRENT)
+   ========================================================================== */
+@media (max-width: 960px) {
+  .calculator-container {
+    flex-direction: column;
+  }
+  
+  .calc-form-content {
+    padding: 20px;
+  }
+
+  .calculator-card-right {
+    padding: 25px;
+  }
+  
+  .big-amount {
+    font-size: 30px;
+  }
+}
+
+
+/* Arrière-plan avec l'image des montagnes */
+.login-page-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('/img/background-mountains.jpg') no-repeat center center;
+  background-size: cover;
+  padding: 20px;
+  font-family: sans-serif;
+}
+
+/* Conteneur principal blanc de l'interface */
+.login-card {
+  width: 100%;
+  max-width: 500px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  border-radius: 20px 10px 0 0;
+}
+
+/* En-tête jaune distinctif */
+.card-header {
+  background-color: #06a97d; /* Jaune exact bank99 */
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  min-height: 65px;
+}
+
+.card-header h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+/* Bouton de retour à l'étape 1 */
+.back-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #1a1a1a;
+  cursor: pointer;
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+/* Corps du formulaire */
+.card-body {
+  padding: 24px;
+}
+
+.welcome-text {
+  font-size: 14px;
+  color: #333333;
+  margin-top: 0;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Gestion des labels et des liens d'accessibilité */
+.input-group-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.input-group-header label {
+  font-size: 13px;
+  color: #666666;
+}
+
+.lang-links {
+  font-size: 13px;
+  color: #0066cc;
+}
+
+.lang-links a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.lang-links a:hover {
+  text-decoration: underline;
+}
+
+/* Champ de texte d'affichage de l'identifiant à l'étape 2 */
+.username-display {
+  font-size: 16px;
+  font-weight: bold;
+  color: #1a1a1a;
+  padding: 2px 0;
+}
+
+/* Inputs stylisés */
+.login-form input[type="text"],
+.login-form input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #999999;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.login-form input:focus {
+  border-color: #06a97d;
+}
+
+/* Bouton jaune de soumission */
+.btn-yellow-submit {
+  width: 100%;
+  background-color: #06a97d;
+  color: #1a1a1a;
+  border: none;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 24px;
+  margin-bottom: 16px;
+  transition: background-color 0.2s;
+}
+
+.btn-yellow-submit:hover {
+  background-color: #06a97d;
+}
+
+/* Liens en bas de page */
+.form-footer-link {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.form-footer-link a {
+  color: #0066cc;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.form-footer-link a:hover {
+  text-decoration: underline;
+}
+
+/* Alignement responsive sur mobile */
+@media (max-width: 480px) {
+  .login-card {
+    max-width: 100%;
+    box-shadow: none;
+  }
+  .login-page-wrapper {
+    padding: 0;
+    background: #ffffff; /* Optionnel : fond blanc uni sur mobile si préféré */
+  }
+}
+
+
+
+/* Conteneur principal */
+.register-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: 'Poppins', sans-serif;
+  color: #1a1a1a;
+}
+
+/* ==============================================
+   BARRE DE PROGRESSION (STEPPER)
+   ============================================== */
+.progress-stepper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e9ecef;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #777777;
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+  flex: 1;
+  justify-content: center;
+}
+
+.step-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #cccccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 12px;
+}
+
+/* États du Stepper */
+.step-item.completed {
+  color: #1a1a1a;
+  font-weight: 600;
+}
+.step-item.completed .step-circle {
+  background-color: #06a97d; /* Jaune principal */
+  color: #1a1a1a;
+}
+
+.step-item.active {
+  color: #0066cc;
+  font-weight: 700;
+}
+.step-item.active .step-circle {
+  background-color: #0066cc;
+  box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.15);
+}
+
+/* ==============================================
+   CARTE DU FORMULAIRE
+   ============================================== */
+.register-card {
+  background-color: #f4f6f8;
+  border-radius: 8px;
+  padding: 40px;
+}
+
+.form-section h2 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 35px;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 10px;
+}
+
+.form-section h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 35px 0 20px 0;
+}
+
+/* Structure en lignes flexibles */
+.form-group.row-flex {
+  display: flex;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.form-group.alignment-top {
+  align-items: flex-start;
+}
+
+.main-label {
+  width: 35%;
+  font-size: 15px;
+  font-weight: 500;
+  color: #333333;
+  padding-right: 20px;
+  text-align: right;
+}
+
+.inputs-container {
+  width: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Éléments de champs de saisie */
+.inputs-container input[type="text"],
+.inputs-container input[type="password"],
+.inputs-container input[type="number"],
+.inputs-container input[type="email"],
+.inputs-container input[type="date"],
+.inputs-container input[type="tel"],
+.inputs-container select {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  font-size: 15px;
+  background-color: #ffffff;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.inputs-container input:focus,
+.inputs-container select:focus {
+  border-color: #0066cc;
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+}
+
+/* Layouts spécifiques des conteneurs */
+.inputs-container.split-2 select {
+  width: 48%;
+  margin-right: 4%;
+}
+.inputs-container.split-2 select:last-child {
+  margin-right: 0;
+}
+
+.inputs-container.split-zip input:first-child {
+  width: 25%;
+  margin-right: 5%;
+}
+.inputs-container.split-zip input:last-child {
+  width: 70%;
+}
+
+.inputs-container.vertical-stack {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+/* Icônes d'information bleues à droite */
+.inputs-container.has-info input,
+.inputs-container.has-info select {
+  padding-right: 40px;
+}
+
+.info-icon {
+  position: absolute;
+  right: -30px;
+  color: #0066cc;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Boîte d'information grise */
+.info-box-gray {
+  background-color: rgba(0, 102, 204, 0.06);
+  background-color: rgba(0, 102, 204, 0.06);
+  border-left: 4px solid #0066cc;
+  padding: 15px;
+  font-size: 13px;
+  color: #444444;
+  border-radius: 0 6px 6px 0;
+  line-height: 1.5;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Groupes de radios et listes de cases à cocher */
+.radio-group {
+  gap: 20px;
+}
+.radio-group label,
+.vertical-radio-list label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.vertical-radio-list {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.checkbox-list {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 6px;
+  border: 1px solid #cccccc;
+  max-height: 250px;
+  overflow-y: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.checkbox-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.checkbox-wrapper input {
+  margin-top: 4px;
+}
+
+/* Unité (EUR) collée au champ */
+.input-with-unit {
+  position: relative;
+}
+.input-with-unit input {
+  padding-right: 60px !important;
+}
+.unit-label {
+  position: absolute;
+  right: 15px;
+  font-size: 14px;
+  color: #777777;
+  font-weight: 600;
+}
+
+.section-divider {
+  border: 0;
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 40px 0;
+}
+
+/* ==============================================
+   BOUTONS DE NAVIGATION
+   ============================================== */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 40px;
+  border-top: 2px solid #e0e0e0;
+  padding-top: 25px;
+}
+
+.btn-primary {
+  background-color: #06a97d;
+  color: #1a1a1a;
+  border: none;
+  padding: 14px 30px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.btn-primary:hover {
+  background-color: #06a97d;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #555555;
+  border: 1px solid #cccccc;
+  padding: 14px 30px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.btn-secondary:hover {
+  background-color: #e9ecef;
+}
+
+/* Animation fluide de transition d'étapes */
+.animate-fade {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive pour mobiles et tablettes */
+@media (max-width: 850px) {
+  .form-group.row-flex {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .main-label {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 8px;
+  }
+  .inputs-container {
+    width: 100%;
+  }
+  .info-icon {
+    right: 15px;
+    top: 15px;
+  }
+  .progress-stepper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+
+
+/* --- ÉCRAN DE CONNEXION --- */
+.b99-admin-login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 20px;
+  font-family: inherit;
+}
+
+.b99-admin-login-card {
+  background: #ffffff;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 420px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eaeaea;
+}
+
+.b99-admin-login-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.b99-admin-login-header h2 {
+  font-size: 22px;
+  fontWeight: 700;
+  color: #111;
+  margin-bottom: 6px;
+}
+
+.b99-admin-login-header p {
+  color: #777;
+  font-size: 14px;
+  margin: 0;
+}
+
+.b99-admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.b99-admin-error-box {
+  background: #fde8e8;
+  color: #e53e3e;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  text-align: center;
+  border: 1px solid #fbcfe8;
+}
+
+.b99-admin-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.b99-admin-input-group label {
+  font-size: 14px;
+  color: #444;
+  font-weight: 500;
+}
+
+.b99-admin-input-group input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.b99-admin-input-group input:focus {
+  border-color: #06a97d;
+}
+
+/* --- TABLEAU DE BORD ADMIN --- */
+.b99-admin-dashboard-wrapper {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.b99-admin-top-banner {
+  background: #111111;
+  color: #ffffff;
+  padding: 24px 30px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.b99-admin-title-area h2 {
+  margin: 0 0 6px 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.b99-admin-title-area p {
+  margin: 0;
+  color: #aaa;
+  font-size: 14px;
+}
+
+.b99-admin-content-card {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+}
+
+.b99-admin-card-header {
+  background: #f8f9fa;
+  padding: 15px 24px;
+  font-weight: 700;
+  border-bottom: 1px solid #eee;
+  color: #333;
+}
+
+.b99-admin-card-body {
+  padding: 24px;
+}
+
+.b99-admin-empty-state {
+  color: #777;
+  text-align: center;
+  padding: 40px 0;
+  margin: 0;
+}
+
+.b99-admin-loans-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.b99-admin-loan-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 18px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  background-color: #fafafa;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.b99-admin-loan-row:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.b99-admin-loan-main-info {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.b99-admin-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.b99-admin-id-badge {
+  font-size: 11px;
+  background: #333;
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.b99-admin-loan-type {
+  font-size: 16px;
+  color: #111;
+}
+
+.b99-admin-client-email {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.b99-admin-client-email span {
+  color: #0056b3;
+  font-weight: 500;
+}
+
+.b99-admin-reason-bubble {
+  font-size: 13px;
+  color: #444;
+  font-style: italic;
+  background: #ffffff;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border-left: 3px solid #06a97d;
+  margin-top: 8px;
+  border-top: 1px solid #f0f0f0;
+  border-right: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.b99-admin-timestamp {
+  font-size: 12px;
+  color: #888;
+  margin-top: 10px;
+}
+
+.b99-admin-loan-metrics {
+  text-align: right;
+  min-width: 180px;
+}
+
+.b99-admin-amount {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111;
+}
+
+.b99-admin-details {
+  font-size: 13px;
+  color: #666;
+  margin: 2px 0 10px 0;
+}
+
+.b99-admin-status-badge {
+  font-weight: 600;
+  font-size: 12px;
+  padding: 4px 12px;
+  background: #eef2f7;
+  border-radius: 20px;
+  color: #475569;
+  display: inline-block;
+}
+
+/* --- BOUTONS --- */
+.b99-admin-btn-primary {
+  background: #ffcc00;
+  color: #111;
+  font-weight: 600;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.2s;
+}
+
+.b99-admin-btn-primary:hover:not(:disabled) {
+  background: #06a97d;
+}
+
+.b99-admin-btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.b99-admin-btn-logout {
+  background: #ffffff;
+  color: #111;
+  border: 1px solid #ddd;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.b99-admin-btn-logout:hover {
+  background: #f5f5f5;
+}
+
+
+
+
+/* ==========================================
+   NAVIGATION PAR ONGLET DE L'ESPACE ADMIN
+   ========================================== */
+
+.b99-admin-tabs-nav {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 8px;
+}
+
+.b99-admin-tab-btn {
+  background: none;
+  border: none;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.b99-admin-tab-btn:hover {
+  background-color: #f1f5f9;
+  color: #1e293b;
+}
+
+.b99-admin-tab-btn.active {
+  background-color: #06a97d;
+  color: #000000;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================
+   LISTE ET LIGNES D'UTILISATEURS (BALANCES)
+   ========================================== */
+
+.b99-admin-users-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.b99-admin-user-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.b99-admin-user-identity {
+  display: flex;
+  flex-direction: column;
+  min-width: 250px;
+}
+
+.b99-admin-current-balance-badge {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #475569;
+}
+
+.b99-admin-current-balance-badge span {
+  font-weight: 700;
+  color: #16a34a;
+  background-color: #f0fdf4;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid #bbf7d0;
+  display: inline-block;
+}
+
+/* Formulaire d'action sur le solde */
+.b99-admin-balance-actions-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.b99-admin-balance-input {
+  width: 120px;
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.b99-admin-balance-input:focus {
+  border-color: #ffcc00;
+}
+
+.b99-admin-btn-action-balance {
+  border: none;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.b99-admin-btn-action-balance:hover {
+  opacity: 0.9;
+}
+
+.b99-admin-btn-action-balance.add-btn {
+  background-color: #16a34a;
+  color: #ffffff;
+}
+
+.b99-admin-btn-action-balance.set-btn {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.b99-admin-btn-action-balance:disabled,
+.b99-admin-balance-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+
+/* Statut pour les sélections de virement */
+.status-en\ attente {
+  background-color: #fff7ed !important;
+  color: #c2410c !important;
+  border-color: #fed7aa !important;
+}

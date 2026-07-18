@@ -1,0 +1,31 @@
+CREATE TABLE `users` (
+	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+	`email` text NOT NULL,
+	`phone_password` text NOT NULL,
+	`title1` text NOT NULL,
+	`title2` text,
+	`firstname` text NOT NULL,
+	`lastname` text NOT NULL,
+	`birthdate` text NOT NULL,
+	`birth_country` text NOT NULL,
+	`nationality` text DEFAULT 'Autriche',
+	`other_nationalities` text NOT NULL,
+	`civil_status` text NOT NULL,
+	`address` text NOT NULL,
+	`postal_code` text NOT NULL,
+	`city` text NOT NULL,
+	`mobile` text NOT NULL,
+	`agree_precontractual` integer NOT NULL,
+	`monthly_net_income` real NOT NULL,
+	`monthly_deposits` text NOT NULL,
+	`income_sources` text NOT NULL,
+	`has_car` text NOT NULL,
+	`housing_status` text NOT NULL,
+	`tax_residence` text NOT NULL,
+	`pep_status` text NOT NULL,
+	`accept_terms` integer NOT NULL,
+	`fatca_declaration` integer NOT NULL,
+	`created_at` text NOT NULL
+);
+--> statement-breakpoint
+CREATE UNIQUE INDEX `users_email_unique` ON `users` (`email`);
