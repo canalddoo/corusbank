@@ -12,21 +12,21 @@ export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
 
-  // Déterminer la langue actuelle basée sur l'URL
+  // Ermitteln der aktuellen Sprache basierend auf der URL
   const getCurrentLang = () => {
     if (pathname.startsWith("/de")) return "DE";
     if (pathname.startsWith("/nl")) return "NL";
-    return "EN"; // Anglais par défaut (page principale)
+    return "EN"; // Englisch als Standard
   };
 
   const currentLang = getCurrentLang();
 
-  // Fonction pour changer de langue tout en conservant la page actuelle
+  // Funktion zum Sprachwechsel bei Beibehaltung der aktuellen Seite
   const handleLanguageChange = (targetLang: string) => {
     setIsOpen(false);
     setActiveDropdown(null);
 
-    // Nettoyer le chemin actuel des préfixes de langue
+    // Sprachpräfixe aus dem aktuellen Pfad entfernen
     let cleanPath = pathname;
     if (cleanPath.startsWith("/de")) {
       cleanPath = cleanPath.replace(/^\/de/, "");
@@ -34,19 +34,18 @@ export default function Navbar() {
       cleanPath = cleanPath.replace(/^\/nl/, "");
     }
 
-    // Assurer qu'il y a un slash au début si le chemin devient vide
+    // Sicherstellen, dass ein Schrägstrich am Anfang steht
     if (!cleanPath.startsWith("/")) {
       cleanPath = "/" + cleanPath;
     }
 
-    // Construire la nouvelle URL
+    // Neue URL erstellen
     let newPath = cleanPath;
     if (targetLang === "DE") {
       newPath = `/de${cleanPath === "/" ? "" : cleanPath}`;
     } else if (targetLang === "NL") {
       newPath = `/nl${cleanPath === "/" ? "" : cleanPath}`;
     }
-    // Si targetLang === "EN", newPath reste cleanPath
 
     router.push(newPath || "/");
   };
@@ -75,7 +74,7 @@ export default function Navbar() {
     <nav className="navbar">
       <div className="nav-container">
         
-        {/* LE BANDEAU DU HAUT */}
+        {/* HEADER-LEISTE */}
         <div className="nav-header">
           <div className="nav-brand">
             <Link href={currentLang === "DE" ? "/de" : currentLang === "NL" ? "/nl" : "/"}>
@@ -83,69 +82,66 @@ export default function Navbar() {
             </Link>
           </div>
 
-          <button className="burger-menu" onClick={() => setIsOpen(!isOpen)} aria-label="Menu">
+          <button className="burger-menu" onClick={() => setIsOpen(!isOpen)} aria-label="Menü">
             <i className={isOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars"}></i>
           </button>
         </div>
 
-        {/* LE MENU */}
+        {/* DAS MENÜ */}
         <div className={`nav-content ${isOpen ? "open" : ""}`}>
           
           <ul className="nav-links">
-            {/* LIEN 1 : COMPTE */}
+            {/* LINK 1: KONTO */}
             <li className={`has-dropdown ${activeDropdown === "Compte" ? "active" : ""}`}>
-              <a href="/dashboard" onClick={(e) => toggleDropdown("Compte", e)}>
-                <span>Compte</span>
+              <a href="/de/dashboard" onClick={(e) => toggleDropdown("Compte", e)}>
+                <span>Konto</span>
               </a>
               <ul className="dropdown-menu">
-                <li><Link href="#" onClick={() => setIsOpen(false)}>Compte courant</Link></li>
-                <li><Link href="#" onClick={() => setIsOpen(false)}>Compte étudiant</Link></li>
-                <li><Link href="#" onClick={() => setIsOpen(false)}>Cartes bancaires</Link></li>
+                <li><Link href="#" onClick={() => setIsOpen(false)}>Girokonto</Link></li>
+                <li><Link href="#" onClick={() => setIsOpen(false)}>Studentenkonto</Link></li>
+                <li><Link href="#" onClick={() => setIsOpen(false)}>Bankkarten</Link></li>
               </ul>
             </li>
 
-          
-
-            {/* LIEN 3 : FINANCE */}
+            {/* LINK 2: FINANZEN */}
             <li className={`has-dropdown ${activeDropdown === "Finance" ? "active" : ""}`}>
-              <a href="/dashboard" onClick={(e) => toggleDropdown("Finance", e)}>
-                <span>Finance</span>
+              <a href="/de/dashboard" onClick={(e) => toggleDropdown("Finance", e)}>
+                <span>Finanzen</span>
               </a>
               <ul className="dropdown-menu">
-                <li><Link href="#" onClick={() => setIsOpen(false)}>Prêt personnel</Link></li>
-                <li><Link href="#" onClick={() => setIsOpen(false)}>Financement immobilier</Link></li>
+                <li><Link href="#" onClick={() => setIsOpen(false)}>Privatkredit</Link></li>
+                <li><Link href="#" onClick={() => setIsOpen(false)}>Baufinanzierung</Link></li>
               </ul>
             </li>
 
-            {/* LIEN 4 : INVESTIR */}
+            {/* LINK 3: ANLEGEN */}
             <li className={`has-dropdown ${activeDropdown === "Investir" ? "active" : ""}`}>
               <a href="#" onClick={(e) => toggleDropdown("Investir", e)}>
-                <span>Investir</span>
+                <span>Anlegen</span>
               </a>
               <ul className="dropdown-menu">
-                <li><Link href="#" onClick={() => setIsOpen(false)}>Actions & ETF</Link></li>
-                <li><Link href="#" onClick={() => setIsOpen(false)}>Fonds d'investissement</Link></li>
+                <li><Link href="#" onClick={() => setIsOpen(false)}>Aktien & ETFs</Link></li>
+                <li><Link href="#" onClick={() => setIsOpen(false)}>Investmentfonds</Link></li>
               </ul>
             </li>
 
-            
-            {/* LIEN 6 : À PROPOS */}
+            {/* LINK 4: ÜBER UNS */}
             <li>
               <Link href="#" onClick={() => setIsOpen(false)}>
-                <span>À propos de nous</span>
+                <span>Über uns</span>
                 <i className="fa-solid fa-chevron-right arrow-mobile-only"></i>
               </Link>
             </li>
           </ul>
 
-          {/* BOUTONS D'ACTION ET LANGUES */}
+          {/* BUTTONS UND SPRACHAWUSWAHL */}
           <div className="nav-buttons-container">
             <div className="nav-buttons" style={{ display: "flex", alignItems: "center", gap: "10px" }}>
               
-              {/* BOUTON DEVENEZ CLIENT CORUSBANK */}
+              {/* BUTTON KUNDE WERDEN */}
               <div className={`has-dropdown btn-dropdown-wrapper ${activeDropdown === "DevenezClient" ? "active" : ""}`}>
                 <button className="btn-yellow" onClick={(e) => toggleDropdown("DevenezClient", e)}>
-                  <span>Devenez client</span>
+                  <span>Kunde werden</span>
                   <i className="fa-solid fa-chevron-down chevron-pc-only"></i>
                   <i className="fa-solid fa-arrow-right arrow-btn-mobile-only"></i>
                 </button>
@@ -153,23 +149,23 @@ export default function Navbar() {
                 <ul className="dropdown-menu button-dropdown">
                   <li>
                     <Link href="/register" onClick={() => setIsOpen(false)}>
-                      <strong>Compte CorusBank</strong>
-                      <p>Des services bancaires à votre image. Personnalisés, simples et transparents.</p>
+                      <strong>CorusBank Konto</strong>
+                      <p>Banking nach Ihren Vorstellungen. Personalisierbar, einfach und transparent.</p>
                     </Link>
                   </li>
                   <li>
                     <Link href="/register" onClick={() => setIsOpen(false)}>
-                      <strong>Corus Flex Épargne</strong>
-                      <p>Épargnez en toute flexibilité avec un accès quotidien à vos fonds.</p>
+                      <strong>Corus Flex Sparen</strong>
+                      <p>Sparen Sie völlig flexibel mit täglichem Zugriff auf Ihr Geld.</p>
                     </Link>
                   </li>
                   
-                  {/* SOUS-MENU INVESTISSEMENT */}
+                  {/* UNTERMENÜ CAPITAL INVESTITIONEN */}
                   <li className={`has-sub-dropdown ${activeSubDropdown === "OuvrirCompteOptions" ? "sub-active" : ""}`}>
                     <a href="#" onClick={(e) => toggleSubDropdown("OuvrirCompteOptions", e)} className="sub-dropdown-trigger">
                       <div>
-                        <strong>Investissements Corus</strong>
-                        <p>Entrez dans le monde des marchés avec notre espace de courtage.</p>
+                        <strong>Corus Anlegen</strong>
+                        <p>Steigen Sie mit unserem Depotbereich in die Finanzmärkte ein.</p>
                       </div>
                       <i className="fa-solid fa-chevron-right arrow-mobile-only"></i>
                     </a>
@@ -177,12 +173,12 @@ export default function Navbar() {
                     <ul className="sub-dropdown-menu">
                       <li>
                         <Link href="/register" onClick={() => setIsOpen(false)}>
-                          Compte de courtage classique
+                          Klassisches Wertpapierdepot
                         </Link>
                       </li>
                       <li>
                         <Link href="/register" onClick={() => setIsOpen(false)}>
-                          Plans d'investissement programmés
+                          Wertpapiersparpläne
                         </Link>
                       </li>
                     </ul>
@@ -190,27 +186,27 @@ export default function Navbar() {
 
                   <li>
                     <Link href="#" onClick={() => setIsOpen(false)}>
-                      <strong>CorusCredit Conso</strong>
-                      <p>Réalisez vos projets avec un prêt à la consommation sur mesure.</p>
+                      <strong>CorusCredit Ratenkredit</strong>
+                      <p>Verwirklichen Sie Ihre Projekte mit einem maßgeschneiderten Verbraucherkredit.</p>
                     </Link>
                   </li>
                   <li>
                     <Link href="#" onClick={() => setIsOpen(false)}>
-                      <strong>Corus Immo Épargne</strong>
-                      <p>Préparez sereinement votre avenir immobilier pas à pas.</p>
+                      <strong>Corus Immo Sparen</strong>
+                      <p>Bereiten Sie Ihre Immobilienzukunft Schritt für Schritt entspannt vor.</p>
                     </Link>
                   </li>
                 </ul>
               </div>
 
-              {/* BOUTON SE CONNECTER */}
-              <Link href="/login" className="btn-outline" onClick={() => setIsOpen(false)}>
-                Se connecter 
+              {/* BUTTON ANMELDEN */}
+              <Link href="/de/login" className="btn-outline" onClick={() => setIsOpen(false)}>
+                Anmelden 
                 <i className="fa-solid fa-chevron-down chevron-pc-only"></i>
                 <i className="fa-solid fa-arrow-right arrow-btn-mobile-only"></i>
               </Link>
 
-              {/* SÉLECTEUR DE LANGUE (EN, DE, NL) */}
+              {/* SPRACHAUSWAHL (EN, DE, NL) */}
               <div className={`has-dropdown btn-dropdown-wrapper ${activeDropdown === "Language" ? "active" : ""}`} style={{ marginLeft: "5px" }}>
                 <button 
                   className="btn-outline" 

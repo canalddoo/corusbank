@@ -2,8 +2,19 @@
 
 import "./globals.css";
 import "./layout.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+
+// Import des versions Françaises
+import NavbarFr from "@/components/Navbar";
+import FooterFr from "@/components/Footer";
+
+// Import des versions Allemandes
+import NavbarDe from "@/components/de/Navbar";
+import FooterDe from "@/components/de/Footer";
+
+// Import des versions Néerlandaises
+import NavbarNl from "@/components/nl/Navbar";
+import FooterNl from "@/components/nl/Footer";
+
 import { usePathname } from "next/navigation";
 
 export default function RootLayout({
@@ -13,15 +24,26 @@ export default function RootLayout({
 }>) {
   const pathname = usePathname();
 
-  // Masquer la nav et le footer si on est sur la page de login OU sur le dashboard
-// Ton ancienne condition mise à jour avec l'administration
-const hideNavAndFooter = 
-  pathname === "/login" || 
-  pathname.startsWith("/dashboard") || 
-  pathname.startsWith("/admin"); // <-- Masque la navigation et le footer sur toutes les pages admin
+  // 1. Détection de la langue dans l'URL
+  const isGerman = pathname.startsWith("/de");
+  const isDutch = pathname.startsWith("/nl");
+
+  // 2. Masquer la nav et le footer (prend en compte /de et /nl)
+  const hideNavAndFooter = 
+    pathname === "/login" || 
+    pathname === "/de/login" || 
+    pathname === "/nl/login" || 
+    pathname.startsWith("/dashboard") || 
+    pathname.startsWith("/de/dashboard") || 
+    pathname.startsWith("/nl/dashboard") || 
+    pathname.startsWith("/admin");
+
+  // 3. Choix du composant en fonction de la langue
+  const ActiveNavbar = isGerman ? NavbarDe : isDutch ? NavbarNl : NavbarFr;
+  const ActiveFooter = isGerman ? FooterDe : isDutch ? FooterNl : FooterFr;
 
   return (
-    <html lang="fr">
+    <html lang={isGerman ? "de" : isDutch ? "nl" : "fr"}>
       <head>
         {/* Font Awesome pour les icônes */}
         <link 
@@ -35,11 +57,11 @@ const hideNavAndFooter =
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
       </head>
-      {/* On ajoute l'attribut ici sur le body */}
+      
       <body suppressHydrationWarning={true}>
-        {!hideNavAndFooter && <Navbar />}
+        {!hideNavAndFooter && <ActiveNavbar />}
         <main>{children}</main>
-        {!hideNavAndFooter && <Footer />}
+        {!hideNavAndFooter && <ActiveFooter />}
       </body>
     </html>
   );

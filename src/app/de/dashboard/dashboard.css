@@ -1,0 +1,1511 @@
+/* Réinitialisation de base et import police */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+:root {
+  --b99-brand-yellow: #06a97d;
+  --b99-dark-charcoal: #1a1a1a;
+  --b99-bg-light: #f4f6f9;
+  --b99-border-grey: #e2e8f0;
+  --b99-text-dark: #2c3e50;
+  --b99-text-grey: #8a99a8;
+  --b99-color-green: #2ecc71;
+  --b99-color-red: #e74c3c;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: var(--b99-bg-light);
+  color: var(--b99-text-dark);
+}
+
+/* ------------------------------------------------------------- */
+/* CONFIGURATION DES EN-TÊTES DE DISPOSITIF (DESKTOP ET MOBILE)  */
+/* ------------------------------------------------------------- */
+
+.desktop-only { display: block; }
+.mobile-only { display: none; }
+
+/* Entête Ordinateur Portable (online-banking-laptop_2.png) */
+.b99-desktop-header {
+  background: #ffffff;
+  border-bottom: 1px solid var(--b99-border-grey);
+}
+
+.b99-top-utility-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 30px;
+}
+
+.b99-brand-logo-zone {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.b99-logo-yellow-box {
+  background: none;
+  color: #ffffff;
+  padding: 0px 5px;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 3px;
+}
+
+.b99-logo-yellow-box  img{
+  width: 80px;
+  height: 40px;
+}
+
+.b99-logo-yellow-box .logo-num { color: var(--b99-brand-yellow); }
+
+.b99-post-horn-logo {
+  background: var(--b99-brand-yellow);
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 20px;
+}
+
+.b99-top-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 14px;
+}
+
+.utility-link, .logout-action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 600;
+}
+
+.badge-wrapper {
+  position: relative;
+}
+
+.blue-counter-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #0066cc;
+  color: #ffffff;
+  font-size: 10px;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blue-counter-badge.inline {
+  position: relative;
+  display: inline-flex;
+  top: 0;
+  right: 0;
+  margin-left: 5px;
+}
+
+.user-profile-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+/* Bandeau navigation jaune Desktop */
+.b99-desktop-navbar {
+  background: var(--b99-brand-yellow);
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 12px 0;
+}
+
+.b99-desktop-navbar .nav-item {
+  text-decoration: none;
+  color: var(--b99-dark-charcoal);
+  font-weight: bold;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ------------------------------------------------------------- */
+/* DISPOSITION ET GRILLE DES PAGES                               */
+/* ------------------------------------------------------------- */
+
+.b99-main-viewport {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.b99-user-hero-card {
+  background: #ffffff;
+  border: 1px solid var(--b99-border-grey);
+  border-radius: 4px;
+  padding: 24px;
+  display: flex;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.hero-profile-avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.avatar-placeholder {
+  font-size: 40px;
+  color: var(--b99-text-grey);
+}
+
+.btn-avatar-edit {
+  background: none;
+  border: none;
+  font-size: 12px;
+  color: var(--b99-text-grey);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.hero-search-area h1 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.hero-input-container {
+  position: relative;
+  max-width: 450px;
+}
+
+.hero-input-container i {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--b99-text-grey);
+}
+
+.hero-input-container input {
+  width: 100%;
+  padding: 10px 10px 10px 35px;
+  border: 1px solid var(--b99-border-grey);
+  border-radius: 4px;
+}
+
+.b99-dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 25px;
+}
+
+.b99-card-panel {
+  background: #ffffff;
+  border: 1px solid var(--b99-border-grey);
+  border-radius: 4px;
+}
+
+.panel-inner-padding {
+  padding: 24px;
+}
+
+/* Éléments de Carte Bancaire Intérieure */
+.credit-card-info-box {
+  border: 1px solid var(--b99-border-grey);
+  border-radius: 4px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.mock-card-graphic {
+  width: 45px;
+  height: 30px;
+  background: #cbd5e1;
+  border-radius: 3px;
+  position: relative;
+}
+
+.yellow-stripe-mini {
+  background: var(--b99-brand-yellow);
+  height: 6px;
+  width: 100%;
+  position: absolute;
+  top: 6px;
+}
+
+.account-type-label {
+  font-size: 13px;
+  color: var(--b99-text-grey);
+}
+
+.account-iban-code {
+  font-size: 16px;
+  color: #333;
+}
+
+.timeframe-selector-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--b99-border-grey);
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+
+/* Jauges financières de l'application */
+.gauge-financial-container {
+  margin-bottom: 20px;
+}
+
+.gauge-text-metric {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.lbl-muted { color: var(--b99-text-grey); }
+.val-bold { font-weight: 700; }
+
+.text-green { color: var(--b99-color-green); }
+.text-red { color: var(--b99-color-red); }
+
+.gauge-track {
+  background: #edf2f7;
+  height: 6px;
+  width: 100%;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.gauge-fill {
+  height: 100%;
+  border-radius: 3px;
+}
+
+.gauge-fill.bg-green { background-color: var(--b99-color-green); }
+.gauge-fill.bg-red { background-color: var(--b99-color-red); }
+
+.financial-breakdown-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  border-top: 1px solid var(--b99-border-grey);
+  padding-top: 20px;
+}
+
+.flex-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.structural-highlight {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.val-large {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.text-green-light { color: #27ae60; font-size: 14px; }
+
+/* Liste d'actions droite */
+.gray-header-strip-title {
+  background: #dbdee4;
+  padding: 12px 16px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.action-navigation-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.action-list-row-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid var(--b99-border-grey);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.action-list-row-item:hover {
+  background: #f8fafc;
+}
+
+/* ------------------------------------------------------------- */
+/* ADAPTATION SMARTPHONE PURE (WhatsApp Image 2026-06-20)       */
+/* ------------------------------------------------------------- */
+
+@media (max-width: 868px) {
+  .desktop-only { display: none !important; }
+  .mobile-only { display: flex !important; }
+
+  /* En-tête Mobile Spécifique */
+  .b99-mobile-header {
+    background: #ffffff;
+    border-bottom: 1px solid var(--b99-border-grey);
+    padding: 12px 16px;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+
+  .mobile-header-left, .mobile-header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .mobile-action-trigger, .mobile-icon-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #111111;
+    cursor: pointer;
+  }
+
+  /* Menu tiroir mobile */
+  .b99-mobile-drawer {
+    position: fixed;
+    top: 55px;
+    left: -100%;
+    width: 250px;
+    height: 100vh;
+    background: #ffffff;
+    box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 15px;
+    transition: left 0.3s ease-in-out;
+  }
+
+  .b99-mobile-drawer.drawer-open {
+    left: 0;
+  }
+
+  .b99-mobile-drawer a {
+    text-decoration: none;
+    color: var(--b99-text-dark);
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  /* Onglets inférieurs mobiles */
+  .b99-mobile-sub-tabs {
+    background: #ffffff;
+    padding: 8px 0;
+    justify-content: center;
+    gap: 15px;
+    border-bottom: 1px solid var(--b99-border-grey);
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .sub-tab-link.muted { color: var(--b99-text-grey); }
+  .sub-tab-link.active-yellow {
+    background: var(--b99-brand-yellow);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  /* Conteneurs forcés sur un seul bloc */
+  .b99-main-viewport {
+    padding: 12px 0;
+  }
+
+  .b99-dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .b99-card-panel {
+    border: none;
+    border-radius: 0;
+  }
+
+  .no-padding-mobile {
+    background: transparent;
+  }
+}
+
+
+
+
+/* ==========================================================================
+   EXTENSIONS POUR LA PAGE FINANCES (SIMULATEUR DE CRÉDIT)
+   ========================================================================== */
+
+.b99-finance-banner {
+  background: #ffffff;
+  border: 1px solid var(--b99-border-grey);
+  border-radius: 4px;
+  padding: 24px;
+}
+
+.b99-finance-banner h2 {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.b99-finance-banner p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #4a5568;
+}
+
+/* Grille adaptative 2 colonnes (Formulaire à gauche / Résultat à droite) */
+.b99-finance-split-layout {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 25px;
+}
+
+.b99-simulator-tabs {
+  display: flex;
+  background: #f7fafc;
+  border-bottom: 1px solid var(--b99-border-grey);
+}
+
+.tab-trigger {
+  padding: 14px 24px;
+  background: none;
+  border: none;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--b99-text-grey);
+}
+
+.tab-trigger.active-tab {
+  background: #ffffff;
+  color: #000000;
+  border-top: 3px solid var(--b99-brand-yellow);
+}
+
+.b99-form-gap {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.simulator-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.simulator-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.simulator-label-row label, .input-section-title {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.label-hint {
+  color: #0066cc;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.currency-box-input {
+  display: flex;
+  align-items: center;
+  border: 1px solid #cbd5e1;
+  padding: 6px 12px;
+  border-radius: 4px;
+  background: #f8fafc;
+  width: 160px;
+}
+
+.currency-box-input span {
+  color: var(--b99-text-grey);
+  margin-right: 6px;
+  font-weight: 600;
+}
+
+.currency-box-input input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  text-align: right;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+/* Curseur input range personnalisé */
+.b99-custom-range-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 3px;
+  outline: none;
+}
+
+.b99-custom-range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  background: var(--b99-brand-yellow);
+  border: 2px solid var(--b99-dark-charcoal);
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.slider-bounds-text {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--b99-text-grey);
+  font-weight: 600;
+}
+
+/* Grilles de boutons (Intérêts / Années) */
+.toggle-grid-selection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.years-grid-selection {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.choice-button, .year-cell-button {
+  padding: 14px;
+  background: #edf2f7;
+  border: none;
+  border-radius: 4px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-align: center;
+}
+
+.selected-brand-yellow {
+  background: var(--b99-brand-yellow) !important;
+  color: var(--b99-dark-charcoal);
+}
+
+/* Panneau de droite : Résultats */
+.b99-result-flex-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-column-grow {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.b99-result-flex-panel h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.result-metrics-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.metric-row-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.dashed-separator-line {
+  border: none;
+  border-top: 1px dashed #cbd5e1;
+  margin: 24px 0;
+}
+
+.monthly-display-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.monthly-badge-label {
+  font-weight: 700;
+  font-size: 15px;
+  text-transform: uppercase;
+  color: var(--b99-text-dark);
+}
+
+.monthly-price-alignment {
+  text-align: right;
+}
+
+.monthly-price-alignment h2 {
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--b99-dark-charcoal);
+}
+
+.monthly-price-alignment p {
+  font-size: 12px;
+  color: var(--b99-text-grey);
+}
+
+/* Boutons d'actions en bas à droite */
+.finance-action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.primary-action-yellow-btn {
+  background-color: var(--b99-brand-yellow);
+  border: 1px solid  #06a97d;
+  padding: 14px;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.outline-action-dark-btn {
+  background: transparent;
+  border: 1px solid var(--b99-dark-charcoal);
+  padding: 14px;
+  font-weight: 700;
+  border-radius: 24px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ==========================================================================
+   AJUSTEMENTS MÉDIAS QUERY POUR LE COMPORTEMENT MOBILE SUR CETTE PAGE
+   ========================================================================== */
+
+@media (max-width: 868px) {
+  .b99-finance-split-layout {
+    grid-template-columns: 1fr !important; /* Force le passage sur une colonne sur smartphone */
+    gap: 16px;
+  }
+
+  .b99-finance-banner {
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    padding: 16px 16px 0 16px;
+  }
+
+  .years-grid-selection {
+    grid-template-columns: repeat(2, 1fr); /* Les cases d'années s'organisent en 2x2 sur mobile */
+  }
+}
+
+
+/* Arrière-plan assombri fixe qui bloque l'écran */
+.b99-overlay-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* Boîte de dialogue blanche centrale */
+.b99-modal-surface {
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  animation: fadeInModal 0.25s ease-out;
+}
+
+/* Spinner CSS circulaire pour le Loader de 2s */
+.b99-spinner-loader {
+  width: 45px;
+  height: 45px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid  #06a97d; /* Ta couleur dominante brand-yellow */
+  border-radius: 50%;
+  margin: 0 auto;
+  animation: b99-spin 0.8s linear infinite;
+}
+
+@keyframes fadeInModal {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes b99-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+/* ==========================================
+   STYLISATION DE LA PAGE DÉTAILS DU COMPTE
+   ========================================== */
+
+.b99-details-container {
+  font-family: inherit;
+}
+
+.b99-details-banner-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.b99-details-back-btn {
+  background: #ffffff !important;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #111;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.b99-details-back-btn:hover {
+  background: #f5f5f5 !important;
+}
+
+.b99-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 24px;
+  margin-top: 5px;
+}
+
+.b99-details-fields-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.b99-details-field-item {
+  border-bottom: 1px solid #eeeeee;
+  padding-bottom: 14px;
+}
+
+.b99-details-field-item.no-border {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.b99-details-label {
+  font-size: 12px;
+  color: #777777;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.b99-details-value {
+  font-size: 16px;
+  color: #111111;
+  font-weight: 600;
+}
+
+.b99-details-value.text-uppercase {
+  text-transform: uppercase;
+}
+
+.b99-details-value.text-blue {
+  color: #0056b3;
+}
+
+.b99-details-value.tracking-wide {
+  letter-spacing: 0.5px;
+}
+
+.b99-details-status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #e6f7ed;
+  color: #2e7d32;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.b99-details-status-dot {
+  width: 8px;
+  height: 8px;
+  background: #2e7d32;
+  border-radius: 50%;
+}
+
+/* Zone d'affichage et copie de l'IBAN */
+.b99-details-copy-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8f9fa;
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  margin-top: 4px;
+}
+
+.b99-details-copy-box code {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #222;
+  font-family: monospace;
+}
+
+.b99-details-copy-box button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #888;
+  padding: 4px;
+  font-size: 16px;
+  transition: color 0.15s;
+}
+
+.b99-details-copy-box button:hover {
+  color:  #06a97d;
+}
+
+/* Zone d'avertissement de sécurité */
+.b99-details-security-notice {
+  margin-top: 24px;
+  border-left: 4px solid  #06a97d !important;
+}
+
+.b99-details-security-content {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.b99-details-security-icon {
+  font-size: 26px;
+  color:  #06a97d;
+  display: flex;
+  align-items: center;
+}
+
+.b99-details-security-content strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #111;
+  font-size: 15px;
+}
+
+.b99-details-security-content p {
+  margin: 0;
+  font-size: 13px;
+  color: #666;
+  line-height: 1.45;
+}
+
+
+
+/* =======================================================
+   STYLISATION DU VERSO DE LA CARTE BANCAIRE (FIDÈLE PHOTO)
+   ======================================================= */
+
+.b99-card-layout-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+/* Corps plastique au verso (Couleur Matte Anthracite) */
+.b99-physical-card-back {
+  width: 380px;
+  height: 240px;
+  background: #252525;
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #ffffff;
+  user-select: none;
+  box-sizing: border-box;
+  border-bottom: 5px solid #06a97d; /* Tranche dorée/jaune visible au bas de l'image */
+  transition: filter 0.3s, opacity 0.3s;
+}
+
+.b99-physical-card-back.card-frozen {
+  filter: grayscale(0.9) opacity(0.5);
+}
+
+/* Textes techniques tout en haut */
+.b99-card-top-texts {
+  font-size: 7px;
+  color: #888888;
+  padding: 6px 15px 0 15px;
+  letter-spacing: 0.2px;
+}
+
+/* Bande magnétique noire transversale */
+.b99-card-magnetic-stripe {
+  width: 100%;
+  height: 44px;
+  background: #0d0d0d;
+  margin-top: 4px;
+}
+
+/* Ligne Médiane : QR code et logos techniques */
+.b99-card-mid-row {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 15px;
+  position: relative;
+}
+
+/* Simulation graphique du QR Code */
+.b99-card-qrcode-mock {
+  width: 50px;
+  height: 50px;
+  background: #ffffff;
+  border-radius: 3px;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.b99-card-qrcode-mock .qr-inner-box {
+  width: 100%;
+  height: 100%;
+  border: 3px double #000;
+  background-image: linear-gradient(45deg, #000 25%, transparent 25%), 
+                    linear-gradient(-45deg, #000 25%, transparent 25%), 
+                    linear-gradient(45deg, transparent 75%, #000 75%), 
+                    linear-gradient(-45deg, transparent 75%, #000 75%);
+  background-size: 8px 8px;
+}
+
+/* Logos CE, Sans contact */
+.b99-card-tech-logos {
+  display: flex;
+  gap: 10px;
+  color: #aaaaaa;
+  font-size: 13px;
+  font-weight: bold;
+  align-items: center;
+}
+
+/* Badge recyclé à droite */
+.b99-card-recycle-badge {
+  margin-left: auto;
+  border: 1px solid #666;
+  border-radius: 3px;
+  padding: 2px 5px;
+  font-size: 6px;
+  color: #aaa;
+  text-transform: uppercase;
+}
+
+/* Bloc d'informations typographiques du bas */
+.b99-card-back-data-block {
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+.data-col-left, .data-col-right {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.b99-data-row {
+  display: flex;
+  flex-direction: column;
+}
+
+.b99-data-row.inline-row {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+/* Libellés (Karten-Nr., Name, IBAN, CVC...) */
+.b99-label {
+  font-size: 9px;
+  color: #888888;
+  font-weight: 500;
+}
+
+/* Valeurs dynamiques textuelles */
+.b99-value {
+  font-size: 12px;
+  color: #ffffff;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* Formatage type de police de carte bancaire */
+.b99-value.highlight-num {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.b99-value.uppercase-txt {
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+.b99-value.format-iban {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.b99-value.font-mono {
+  font-family: monospace;
+}
+
+/* ==========================================
+   BOUTONS D'ACTION ET ACCESSOIRES
+   ========================================== */
+
+.b99-card-panel {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.gray-header-strip-title {
+  background-color: #f8fafc;
+  padding: 12px 20px;
+  font-weight: 600;
+  font-size: 14px;
+  border-bottom: 1px solid #e2e8f0;
+  color: #334155;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.b99-toggle-action-btn {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.b99-toggle-action-btn.btn-success {
+  background-color: #e6f7ed;
+  color: #2e7d32;
+}
+
+.b99-toggle-action-btn.btn-danger {
+  background-color: #fde8e8;
+  color: #e53e3e;
+}
+
+.b99-spinner-loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #06a97d;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: b99spin 1s linear infinite;
+}
+
+@keyframes b99spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+/* Container Principal */
+.b99-transfer-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+   
+}
+
+/* Bannière */
+.b99-finance-banner {
+  background: #111111;
+  color: #ffffff;
+  padding: 25px 30px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+}
+.banner-flex-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.b99-finance-banner h2 {
+  margin: 0 0 5px 0;
+  font-size: 24px;
+}
+.b99-finance-banner p {
+  margin: 0;
+  color: #aaa;
+  font-size: 14px;
+}
+.banner-flex-row .b99-details-back-btn {
+  background: #222;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  border: 1px solid #444;
+  transition: background 0.2s;
+}
+.b99-details-back-btn:hover {
+  background: #333;
+}
+
+/* Zone Solde */
+.b99-balance-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  max-width: 600px;
+  margin: 0 auto;
+}
+.balance-label {
+  display: block;
+  font-size: 14px;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+.balance-amount {
+  font-size: 42px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 30px 0;
+}
+.primary-action-yellow-btn {
+  background: #06a97d;
+  color: #000;
+  font-weight: 600;
+  border: none;
+  padding: 14px 35px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.1s, background-color 0.2s;
+}
+.primary-action-yellow-btn:hover {
+  background: #06a97d;
+}
+.primary-action-yellow-btn:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+}
+
+/* Modal Premier Plan */
+.b99-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+.b99-modal-content {
+  background: #ffffff;
+  width: 100%;
+  max-width: 520px;
+  border-radius: 14px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  animation: modalFadeIn 0.25s ease-out;
+}
+@keyframes modalFadeIn {
+  from { transform: translateY(15px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #f1f5f9;
+  background: #fafafa;
+}
+.modal-header h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #1e293b;
+}
+.close-modal-btn {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #94a3b8;
+  line-height: 1;
+}
+.close-modal-btn:hover {
+  color: #334155;
+}
+
+/* Formulaire */
+.b99-transfer-form {
+  padding: 24px;
+}
+.form-group {
+  margin-bottom: 18px;
+}
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 6px;
+}
+.form-group input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #334155;
+  outline: none;
+  box-sizing: border-box;
+}
+.form-group input:focus {
+  border-color: #06a97d;
+  box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.2);
+}
+
+/* Alerte Erreur */
+.b99-error-alert-box {
+  background: #fef2f2;
+  border: 1px solid #fee2e2;
+  color: #991b1b;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+/* Actions Footer */
+.modal-actions-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 26px;
+}
+.cancel-btn {
+  background: #f1f5f9;
+  color: #475569;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+.cancel-btn:hover {
+  background: #e2e8f0;
+}
+.confirm-btn {
+  background: #111111;
+  color: #ffffff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+.confirm-btn:hover {
+  background: #222222;
+}
+
+/* Loader d'attente */
+.modal-processing-view {
+  text-align: center;
+  padding: 50px 30px;
+}
+.modal-processing-view h4 {
+  margin: 20px 0 8px 0;
+  color: #0f172a;
+}
+.modal-processing-view p {
+  margin: 0;
+  font-size: 13px;
+  color: #64748b;
+}
+.b99-spinner-loader {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #06a97d;
+  border-radius: 50%;
+  margin: 0 auto;
+  animation: b99spin 1s linear infinite;
+}
+@keyframes b99spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+.poppins-font {
+  font-family: 'Poppins', sans-serif !important;
+} 
+
+/* Écran d'erreur critique de premier plan */
+.b99-critical-error-view {
+  padding: 40px 30px;
+  text-align: center;
+  animation: errorPopIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes errorPopIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.error-icon-circle {
+  width: 60px;
+  height: 60px;
+  background-color: #fee2e2;
+  color: #ef4444;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 auto 20px auto;
+}
+
+.b99-critical-error-view h3 {
+  color: #1e293b;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+}
+
+.error-main-text {
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 20px 0;
+}
+
+.instruction-box {
+  background-color: #f8fafc;
+  border-left: 4px solid #06a97d;
+  padding: 16px;
+  border-radius: 0 8px 8px 0;
+  text-align: left;
+  font-size: 14px;
+  color: #334155;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.error-close-action-btn {
+  background: #111111;
+  color: #ffffff;
+  border: none;
+  padding: 12px 30px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 100%;
+}
+
+.error-close-action-btn:hover {
+  background: #222222;
+}

@@ -12,21 +12,21 @@ export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
 
-  // Déterminer la langue actuelle basée sur l'URL
+  // Bepaal de huidige taal op basis van de URL
   const getCurrentLang = () => {
     if (pathname.startsWith("/de")) return "DE";
     if (pathname.startsWith("/nl")) return "NL";
-    return "EN"; // Anglais par défaut (page principale)
+    return "EN"; // Engels als standaard (hoofdpagina)
   };
 
   const currentLang = getCurrentLang();
 
-  // Fonction pour changer de langue tout en conservant la page actuelle
+  // Functie om van taal te veranderen met behoud van de huidige pagina
   const handleLanguageChange = (targetLang: string) => {
     setIsOpen(false);
     setActiveDropdown(null);
 
-    // Nettoyer le chemin actuel des préfixes de langue
+    // Verwijder taalprefixes uit het huidige pad
     let cleanPath = pathname;
     if (cleanPath.startsWith("/de")) {
       cleanPath = cleanPath.replace(/^\/de/, "");
@@ -34,19 +34,19 @@ export default function Navbar() {
       cleanPath = cleanPath.replace(/^\/nl/, "");
     }
 
-    // Assurer qu'il y a un slash au début si le chemin devient vide
+    // Zorg voor een slash aan het begin als het pad leeg wordt
     if (!cleanPath.startsWith("/")) {
       cleanPath = "/" + cleanPath;
     }
 
-    // Construire la nouvelle URL
+    // Bouw de nieuwe URL
     let newPath = cleanPath;
     if (targetLang === "DE") {
       newPath = `/de${cleanPath === "/" ? "" : cleanPath}`;
     } else if (targetLang === "NL") {
       newPath = `/nl${cleanPath === "/" ? "" : cleanPath}`;
     }
-    // Si targetLang === "EN", newPath reste cleanPath
+    // Als targetLang === "EN", blijft newPath cleanPath
 
     router.push(newPath || "/");
   };
@@ -75,7 +75,7 @@ export default function Navbar() {
     <nav className="navbar">
       <div className="nav-container">
         
-        {/* LE BANDEAU DU HAUT */}
+        {/* BOVENSTE BALK */}
         <div className="nav-header">
           <div className="nav-brand">
             <Link href={currentLang === "DE" ? "/de" : currentLang === "NL" ? "/nl" : "/"}>
@@ -88,64 +88,61 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* LE MENU */}
+        {/* HET MENU */}
         <div className={`nav-content ${isOpen ? "open" : ""}`}>
           
           <ul className="nav-links">
-            {/* LIEN 1 : COMPTE */}
+            {/* LINK 1 : REKENING */}
             <li className={`has-dropdown ${activeDropdown === "Compte" ? "active" : ""}`}>
-              <a href="/dashboard" onClick={(e) => toggleDropdown("Compte", e)}>
-                <span>Compte</span>
+              <a href="/nl/dashboard" onClick={(e) => toggleDropdown("Compte", e)}>
+                <span>Rekening</span>
               </a>
               <ul className="dropdown-menu">
-                <li><Link href="#" onClick={() => setIsOpen(false)}>Compte courant</Link></li>
-                <li><Link href="#" onClick={() => setIsOpen(false)}>Compte étudiant</Link></li>
-                <li><Link href="#" onClick={() => setIsOpen(false)}>Cartes bancaires</Link></li>
+                <li><Link href="#" onClick={() => setIsOpen(false)}>Betaalrekening</Link></li>
+                <li><Link href="#" onClick={() => setIsOpen(false)}>Studentenrekening</Link></li>
+                <li><Link href="#" onClick={() => setIsOpen(false)}>Bankkaarten</Link></li>
               </ul>
             </li>
 
-          
-
-            {/* LIEN 3 : FINANCE */}
+            {/* LINK 2 : FINANCIËN */}
             <li className={`has-dropdown ${activeDropdown === "Finance" ? "active" : ""}`}>
-              <a href="/dashboard" onClick={(e) => toggleDropdown("Finance", e)}>
-                <span>Finance</span>
+              <a href="/nl/dashboard" onClick={(e) => toggleDropdown("Finance", e)}>
+                <span>Financiën</span>
               </a>
               <ul className="dropdown-menu">
-                <li><Link href="#" onClick={() => setIsOpen(false)}>Prêt personnel</Link></li>
-                <li><Link href="#" onClick={() => setIsOpen(false)}>Financement immobilier</Link></li>
+                <li><Link href="#" onClick={() => setIsOpen(false)}>Persoonlijke lening</Link></li>
+                <li><Link href="#" onClick={() => setIsOpen(false)}>Hypothecaire financiering</Link></li>
               </ul>
             </li>
 
-            {/* LIEN 4 : INVESTIR */}
+            {/* LINK 3 : BELEGGEN */}
             <li className={`has-dropdown ${activeDropdown === "Investir" ? "active" : ""}`}>
               <a href="#" onClick={(e) => toggleDropdown("Investir", e)}>
-                <span>Investir</span>
+                <span>Beleggen</span>
               </a>
               <ul className="dropdown-menu">
-                <li><Link href="#" onClick={() => setIsOpen(false)}>Actions & ETF</Link></li>
-                <li><Link href="#" onClick={() => setIsOpen(false)}>Fonds d'investissement</Link></li>
+                <li><Link href="#" onClick={() => setIsOpen(false)}>Aandelen & ETF's</Link></li>
+                <li><Link href="#" onClick={() => setIsOpen(false)}>Beleggingsfondsen</Link></li>
               </ul>
             </li>
 
-            
-            {/* LIEN 6 : À PROPOS */}
+            {/* LINK 4 : OVER ONS */}
             <li>
               <Link href="#" onClick={() => setIsOpen(false)}>
-                <span>À propos de nous</span>
+                <span>Over ons</span>
                 <i className="fa-solid fa-chevron-right arrow-mobile-only"></i>
               </Link>
             </li>
           </ul>
 
-          {/* BOUTONS D'ACTION ET LANGUES */}
+          {/* ACTIEKNOPPEN EN TALEN */}
           <div className="nav-buttons-container">
             <div className="nav-buttons" style={{ display: "flex", alignItems: "center", gap: "10px" }}>
               
-              {/* BOUTON DEVENEZ CLIENT CORUSBANK */}
+              {/* KNOP KLANT WORDEN */}
               <div className={`has-dropdown btn-dropdown-wrapper ${activeDropdown === "DevenezClient" ? "active" : ""}`}>
                 <button className="btn-yellow" onClick={(e) => toggleDropdown("DevenezClient", e)}>
-                  <span>Devenez client</span>
+                  <span>Klant worden</span>
                   <i className="fa-solid fa-chevron-down chevron-pc-only"></i>
                   <i className="fa-solid fa-arrow-right arrow-btn-mobile-only"></i>
                 </button>
@@ -153,23 +150,23 @@ export default function Navbar() {
                 <ul className="dropdown-menu button-dropdown">
                   <li>
                     <Link href="/register" onClick={() => setIsOpen(false)}>
-                      <strong>Compte CorusBank</strong>
-                      <p>Des services bancaires à votre image. Personnalisés, simples et transparents.</p>
+                      <strong>CorusBank Rekening</strong>
+                      <p>Bankdiensten die bij u passen. Gepersonaliseerd, eenvoudig en transparant.</p>
                     </Link>
                   </li>
                   <li>
                     <Link href="/register" onClick={() => setIsOpen(false)}>
-                      <strong>Corus Flex Épargne</strong>
-                      <p>Épargnez en toute flexibilité avec un accès quotidien à vos fonds.</p>
+                      <strong>Corus Flex Sparen</strong>
+                      <p>Spaar in alle flexibiliteit met dagelijkse toegang tot uw geld.</p>
                     </Link>
                   </li>
                   
-                  {/* SOUS-MENU INVESTISSEMENT */}
+                  {/* SUBMENU BELEGGINGEN */}
                   <li className={`has-sub-dropdown ${activeSubDropdown === "OuvrirCompteOptions" ? "sub-active" : ""}`}>
                     <a href="#" onClick={(e) => toggleSubDropdown("OuvrirCompteOptions", e)} className="sub-dropdown-trigger">
                       <div>
-                        <strong>Investissements Corus</strong>
-                        <p>Entrez dans le monde des marchés avec notre espace de courtage.</p>
+                        <strong>Corus Beleggingen</strong>
+                        <p>Stap in de wereld van de markten met onze beursomgeving.</p>
                       </div>
                       <i className="fa-solid fa-chevron-right arrow-mobile-only"></i>
                     </a>
@@ -177,12 +174,12 @@ export default function Navbar() {
                     <ul className="sub-dropdown-menu">
                       <li>
                         <Link href="/register" onClick={() => setIsOpen(false)}>
-                          Compte de courtage classique
+                          Klassieke beleggingsrekening
                         </Link>
                       </li>
                       <li>
                         <Link href="/register" onClick={() => setIsOpen(false)}>
-                          Plans d'investissement programmés
+                          Periodieke beleggingsplannen
                         </Link>
                       </li>
                     </ul>
@@ -190,27 +187,27 @@ export default function Navbar() {
 
                   <li>
                     <Link href="#" onClick={() => setIsOpen(false)}>
-                      <strong>CorusCredit Conso</strong>
-                      <p>Réalisez vos projets avec un prêt à la consommation sur mesure.</p>
+                      <strong>CorusCredit Krediet</strong>
+                      <p>Realiseer uw projecten met een consumentenkrediet op maat.</p>
                     </Link>
                   </li>
                   <li>
                     <Link href="#" onClick={() => setIsOpen(false)}>
-                      <strong>Corus Immo Épargne</strong>
-                      <p>Préparez sereinement votre avenir immobilier pas à pas.</p>
+                      <strong>Corus Immo Sparen</strong>
+                      <p>Bereid uw vastgoedtoekomst stap voor stap en in alle rust voor.</p>
                     </Link>
                   </li>
                 </ul>
               </div>
 
-              {/* BOUTON SE CONNECTER */}
-              <Link href="/login" className="btn-outline" onClick={() => setIsOpen(false)}>
-                Se connecter 
+              {/* KNOP INLOGGEN */}
+              <Link href="/nl/login" className="btn-outline" onClick={() => setIsOpen(false)}>
+                Inloggen 
                 <i className="fa-solid fa-chevron-down chevron-pc-only"></i>
                 <i className="fa-solid fa-arrow-right arrow-btn-mobile-only"></i>
               </Link>
 
-              {/* SÉLECTEUR DE LANGUE (EN, DE, NL) */}
+              {/* TAALSELECTOR (EN, DE, NL) */}
               <div className={`has-dropdown btn-dropdown-wrapper ${activeDropdown === "Language" ? "active" : ""}`} style={{ marginLeft: "5px" }}>
                 <button 
                   className="btn-outline" 
