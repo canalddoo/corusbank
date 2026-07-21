@@ -31,11 +31,11 @@ export default function LoginCard() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || "Une erreur est survenue lors de la connexion.");
+        throw new Error(data.error || "An error occurred during login.");
       }
 
       if (data.success) {
-        console.log("Utilisateur connecté avec succès :", data.user);
+        console.log("User successfully logged in:", data.user);
         router.push("/dashboard");
       }
     } catch (err: any) {
@@ -50,35 +50,34 @@ export default function LoginCard() {
     <div className="login-page-wrapper">
       <div className="login-card">
         
-        {/* EN-TÊTE DE LA CARTE */}
+        {/* CARD HEADER */}
         <div className="card-header">
-          <Link href="/" className="back-button" aria-label="Retour à l'accueil">
+          <Link href="/" className="back-button" aria-label="Back to home">
             <i className="fa-solid fa-house"></i>
           </Link>
-          <h2>Se connecter</h2>
+          <h2>Log in</h2>
         </div>
 
-        {/* CONTENU DE LA CARTE */}
+        {/* CARD BODY */}
         <div className="card-body">
           <p className="welcome-text">
-            Bonjour de la part des services bancaires en ligne de CorusBank ! :-)
+            Hello from CorusBank online banking! :-)
           </p>
 
-          {/* AFFICHAGE DES ERREURS */}
+          {/* ERROR DISPLAY */}
           {error && <div className="login-error-message">{error}</div>}
 
-          {/* FORMULAIRE UNIQUE AVEC LES DEUX CHAMPS VISIBLES */}
+          {/* FORM WITH VISIBLE FIELDS */}
           <form onSubmit={handleSubmit} className="login-form">
             
-            {/* CHAMP 1 : ADRESSE E-MAIL */}
+            {/* FIELD 1: EMAIL ADDRESS */}
             <div className="input-group-header">
-              <label htmlFor="username">adresse e-mail</label>
-              
+              <label htmlFor="username">email address</label>
             </div>
             <input
               type="email"
               id="username"
-              placeholder="exemple@domaine.com"
+              placeholder="example@domain.com"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               autoFocus
@@ -86,9 +85,9 @@ export default function LoginCard() {
               disabled={isLoading}
             />
 
-            {/* CHAMP 2 : MOT DE PASSE */}
+            {/* FIELD 2: PASSWORD */}
             <div className="input-group-header" style={{ marginTop: "15px" }}>
-              <label htmlFor="password">mot de passe</label>
+              <label htmlFor="password">password</label>
             </div>
             <input
               type="password"
@@ -100,15 +99,15 @@ export default function LoginCard() {
               disabled={isLoading}
             />
 
-            {/* BOUTON DE SOUMISSION */}
+            {/* SUBMIT BUTTON */}
             <button type="submit" className="btn-yellow-submit" disabled={isLoading}>
-              {isLoading ? "Connexion en cours..." : "Se connecter"}
+              {isLoading ? "Logging in..." : "Log in"}
             </button>
 
-            {/* LIENS DE RÉCUPÉRATION */}
+            {/* RECOVERY LINKS */}
             <div className="form-footer-link" style={{ marginTop: "15px", display: "flex", flexDirection: "column", gap: "5px" }}>
-              <a href="#">Nom d'utilisateur oublié ?</a>
-              <a href="#">Mot de passe oublié ?</a>
+              <a href="#">Forgot username?</a>
+              <a href="#">Forgot password?</a>
             </div>
             
           </form>

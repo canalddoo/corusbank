@@ -149,13 +149,13 @@ export default function Navbar() {
                 
                 <ul className="dropdown-menu button-dropdown">
                   <li>
-                    <Link href="/register" onClick={() => setIsOpen(false)}>
+                    <Link href="/nl/register" onClick={() => setIsOpen(false)}>
                       <strong>CorusBank Rekening</strong>
                       <p>Bankdiensten die bij u passen. Gepersonaliseerd, eenvoudig en transparant.</p>
                     </Link>
                   </li>
                   <li>
-                    <Link href="/register" onClick={() => setIsOpen(false)}>
+                    <Link href="/nl/register" onClick={() => setIsOpen(false)}>
                       <strong>Corus Flex Sparen</strong>
                       <p>Spaar in alle flexibiliteit met dagelijkse toegang tot uw geld.</p>
                     </Link>
@@ -173,12 +173,12 @@ export default function Navbar() {
                     
                     <ul className="sub-dropdown-menu">
                       <li>
-                        <Link href="/register" onClick={() => setIsOpen(false)}>
+                        <Link href="/nl/register" onClick={() => setIsOpen(false)}>
                           Klassieke beleggingsrekening
                         </Link>
                       </li>
                       <li>
-                        <Link href="/register" onClick={() => setIsOpen(false)}>
+                        <Link href="/nl/register" onClick={() => setIsOpen(false)}>
                           Periodieke beleggingsplannen
                         </Link>
                       </li>

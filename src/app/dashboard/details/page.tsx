@@ -8,7 +8,7 @@ interface UserProfileData {
   firstname: string;
   lastname: string;
   email: string;
-  iban: string; // <-- Ajout de la propriété IBAN reçue de la BDD
+  iban: string; // <-- Added IBAN property received from the DB
 }
 
 export default function AccountDetailsPage() {
@@ -24,10 +24,10 @@ export default function AccountDetailsPage() {
           const data = await res.json();
           setProfile(data.user);
         } else {
-          setError("Impossible de charger vos données utilisateur.");
+          setError("Unable to load your user data.");
         }
       } catch (err) {
-        setError("Erreur réseau lors de la communication avec le serveur.");
+        setError("Network error while communicating with the server.");
       } finally {
         setLoading(false);
       }
@@ -37,27 +37,27 @@ export default function AccountDetailsPage() {
   }, []);
 
   const bankBic = "SPBAATWWXXX";
-  const displayIban = profile?.iban || "Non renseigné";
+  const displayIban = profile?.iban || "Not provided";
 
   if (loading) {
     return (
       <div className="b99-details-container" style={{ textAlign: "center", padding: "40px 0" }}>
-        <p style={{ color: "#777" }}>Chargement de vos informations sécurisées...</p>
+        <p style={{ color: "#777" }}>Loading your secured information...</p>
       </div>
     );
   }
 
   return (
     <div className="b99-view-wrapper b99-details-container">
-      {/* BANNIÈRE DE LA PAGE */}
+      {/* PAGE BANNER */}
       <div className="b99-finance-banner b99-details-banner">
         <div className="b99-details-banner-content">
           <div>
-            <h2>Détails du compte & Informations personnelles</h2>
-            <p>Consultez les données de votre profil extraites de notre base de données sécurisée.</p>
+            <h2>Account Details & Personal Information</h2>
+            <p>View your profile data retrieved from our secure database.</p>
           </div>
           <Link href="/dashboard" className="outline-action-dark-btn b99-details-back-btn">
-            <i className="fa-solid fa-arrow-left"></i> Retour au tableau de bord
+            <i className="fa-solid fa-arrow-left"></i> Back to dashboard
           </Link>
         </div>
       </div>
@@ -70,60 +70,60 @@ export default function AccountDetailsPage() {
 
       <div className="b99-details-grid">
         
-        {/* COMPOSANT : PROFIL DE L'UTILISATEUR */}
+        {/* COMPONENT: USER PROFILE */}
         <div className="b99-card-panel">
           <div className="gray-header-strip-title">
-            <i className="fa-solid fa-user" style={{ marginRight: "8px" }}></i> Profil Utilisateur
+            <i className="fa-solid fa-user" style={{ marginRight: "8px" }}></i> User Profile
           </div>
           <div className="panel-inner-padding b99-details-fields-list">
             
             <div className="b99-details-field-item">
-              <span className="b99-details-label">Nom de famille</span>
+              <span className="b99-details-label">Last Name</span>
               <strong className="b99-details-value text-uppercase">
-                {profile?.lastname || "Non renseigné"}
+                {profile?.lastname || "Not provided"}
               </strong>
             </div>
 
             <div className="b99-details-field-item">
-              <span className="b99-details-label">Prénom</span>
+              <span className="b99-details-label">First Name</span>
               <strong className="b99-details-value">
-                {profile?.firstname || "Non renseigné"}
+                {profile?.firstname || "Not provided"}
               </strong>
             </div>
 
             <div className="b99-details-field-item">
-              <span className="b99-details-label">Adresse e-mail enregistrée</span>
+              <span className="b99-details-label">Registered Email Address</span>
               <strong className="b99-details-value text-blue">
-                {profile?.email || "Non renseigné"}
+                {profile?.email || "Not provided"}
               </strong>
             </div>
 
             <div className="b99-details-field-item no-border">
-              <span className="b99-details-label">Statut du compte</span>
+              <span className="b99-details-label">Account Status</span>
               <span className="b99-details-status-tag">
-                <span className="b99-details-status-dot"></span> Vérifié & Actif
+                <span className="b99-details-status-dot"></span> Verified & Active
               </span>
             </div>
 
           </div>
         </div>
 
-        {/* COMPOSANT : COORDONNÉES DE LA BANQUE */}
+        {/* COMPONENT: OFFICIAL BANKING DETAILS */}
         <div className="b99-card-panel">
           <div className="gray-header-strip-title">
-            <i className="fa-solid fa-building-columns" style={{ marginRight: "8px" }}></i> Coordonnées Bancaires Officielles
+            <i className="fa-solid fa-building-columns" style={{ marginRight: "8px" }}></i> Official Banking Details
           </div>
           <div className="panel-inner-padding b99-details-fields-list">
             
             <div className="b99-details-field-item">
-              <span className="b99-details-label">Numéro IBAN</span>
+              <span className="b99-details-label">IBAN Number</span>
               <div className="b99-details-copy-box">
                 {/* <code>{displayIban}</code> */}
                 <code>{displayIban}</code>
-                {profile?.iban && profile.iban !== "Non configuré" && (
+                {profile?.iban && profile.iban !== "Not configured" && (
                   <button 
-                    onClick={() => { navigator.clipboard.writeText(displayIban); alert("IBAN copié dans le presse-papiers !"); }} 
-                    title="Copier l'IBAN"
+                    onClick={() => { navigator.clipboard.writeText(displayIban); alert("IBAN copied to clipboard!"); }} 
+                    title="Copy IBAN"
                   >
                     <i className="fa-regular fa-copy"></i>
                   </button>
@@ -132,16 +132,16 @@ export default function AccountDetailsPage() {
             </div>
 
             <div className="b99-details-field-item">
-              <span className="b99-details-label">Code BIC / SWIFT</span>
+              <span className="b99-details-label">BIC / SWIFT Code</span>
               <strong className="b99-details-value tracking-wide">
                 {bankBic}
               </strong>
             </div>
 
             <div className="b99-details-field-item no-border">
-              <span className="b99-details-label">Nature du compte</span>
+              <span className="b99-details-label">Account Type</span>
               <strong className="b99-details-value">
-                Compte Courant 
+                Checking Account 
               </strong>
             </div>
 
@@ -150,16 +150,16 @@ export default function AccountDetailsPage() {
 
       </div>
 
-      {/* RECOMMANDATION DE SÉCURITÉ */}
+      {/* SECURITY NOTICE */}
       <div className="b99-card-panel b99-details-security-notice">
         <div className="panel-inner-padding b99-details-security-content">
           <div className="b99-details-security-icon">
             <i className="fa-solid fa-shield-halved"></i>
           </div>
           <div>
-            <strong>Intégrité et Sécurité des données</strong>
+            <strong>Data Integrity and Security</strong>
             <p>
-              Ces informations proviennent directement de votre dossier d'enregistrement sécurisé. Pour toute modification réglementaire de vos informations d'identité, veuillez soumettre une demande signée accompagnée d'un justificatif officiel à votre conseiller attitré.
+              This information comes directly from your secure registration file. For any regulatory changes to your identity details, please submit a signed request along with official proof to your assigned advisor.
             </p>
           </div>
         </div>

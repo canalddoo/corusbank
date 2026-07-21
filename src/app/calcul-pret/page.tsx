@@ -20,20 +20,20 @@ interface Slide {
 const slides: Slide[] = [
   {
     id: 1,
-    title: "Lancez votre projet de maison de rêve :",
+    title: "Start your dream home project:",
     highlight: "Corus Immo",
-    subtitle: "Vous rêvez de devenir propriétaire ? Notre prêt immobilier vous le permet.",
-    buttonText: "Calculateur de prêt en ligne",
+    subtitle: "Dreaming of homeownership? Our mortgage loan makes it possible.",
+    buttonText: "Online loan calculator",
     buttonLink: "/calcul-pret",
     imageSrc: "/img/wohnhome.png",
-    imageAlt: "Projet de maison de rêve Corus Immo"
+    imageAlt: "Corus Immo dream home project"
   }
 ];
 
 export default function Hero() {
   const [current, setCurrent] = useState(0);
 
-  // Défilement automatique toutes les 7 secondes
+  // Auto-scroll every 7 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
@@ -49,14 +49,14 @@ export default function Hero() {
     <section className="hero-section"> 
       <div className="hero-container">
 
-        {/* AFFICHAGE DES CARDS DU SLIDER */}
+        {/* SLIDER CARDS DISPLAY */}
         <div className="hero-slider">
           {slides.map((slide, index) => (
             <div 
               key={slide.id} 
               className={`hero-slide ${index === current ? "active" : ""}`}
             >
-              {/* CÔTÉ GAUCHE : TEXTES & BOUTONS */}
+              {/* LEFT SIDE: TEXT & BUTTONS */}
               <div className="hero-content">
                 <h1 className="hero-title">
                   {slide.title} {slide.highlight && <span className="hero-highlight"><br/>{slide.highlight}</span>}
@@ -70,7 +70,7 @@ export default function Hero() {
                 </Link>
               </div>
 
-              {/* CÔTÉ DROIT : IMAGE + BADGE OPTIONNEL */}
+              {/* RIGHT SIDE: IMAGE + OPTIONAL BADGE */}
               <div className="hero-image-wrapper">
                 {slide.badge && <div className="hero-badge">{slide.badge}</div>}
                 <img src={slide.imageSrc} alt={slide.imageAlt} className="hero-img" />
@@ -79,21 +79,21 @@ export default function Hero() {
           ))}
         </div>
 
-        {/* SECTION D'INTRODUCTION AU CALCULATEUR */}
+        {/* CALCULATOR INTRO SECTION */}
         <section className="calc-intro-section">
           <div className="calc-intro-container">
             <p className="calc-intro-text">
-              Notre prêt <strong>Corus Immo</strong> vous permet d’emprunter entre 50 000 € et 1 000 000 € pour financer 
-              l’acquisition de votre bien immobilier idéal. Vous pouvez choisir une durée de remboursement de 5 à 35 
-              ans et différentes options de taux d’intérêt : fixe, variable ou mixte.
+              Our <strong>Corus Immo</strong> mortgage allows you to borrow between €50,000 and €1,000,000 to finance 
+              the purchase of your ideal property. You can select a repayment period ranging from 5 to 35 
+              years and choose between fixed, variable, or hybrid interest rate options.
             </p>
           </div>
         </section>
 
-        {/* INCLUSION DU CALCULATEUR DE PRÊT */}
+        {/* LOAN CALCULATOR COMPONENT */}
         <LoanCalculator />
 
-        {/* NAVIGATION / DOTS EN BAS */}
+        {/* NAVIGATION / BOTTOM DOTS */}
         <div className="hero-navigation">
           <div className="hero-dots">
             {slides.map((_, index) => (
@@ -101,58 +101,58 @@ export default function Hero() {
                 key={index}
                 className={`hero-dot ${index === current ? "active" : ""}`}
                 onClick={() => setCurrent(index)}
-                aria-label={`Aller à la diapositive ${index + 1}`}
+                aria-label={`Go to slide ${index + 1}`}
               />
             ))}
           </div>
-          <button className="hero-next-arrow" onClick={nextSlide} aria-label="Diapositive suivante">
+          <button className="hero-next-arrow" onClick={nextSlide} aria-label="Next slide">
             <i className="fa-solid fa-play"></i>
           </button>
         </div>
 
-        {/* SECTION RECHERCHES & ARTICLES */}
+        {/* ARTICLES & INSIGHTS SECTION */}
         <section className="news-section">
           <div className="news-container">
             
             <div className="news-header">
               <div className="news-accent-line"></div>
-              <h2 className="news-title">En savoir plus...</h2>
+              <h2 className="news-title">Find out more...</h2>
             </div>
 
             <div className="news-grid">
-              {/* CARTE 1 */}
+              {/* CARD 1 */}
               <div className="news-card">
                 <div className="news-image-box">
-                  <img src="/img/finant1.avif" alt="Financement immobilier" />
+                  <img src="/img/finant1.avif" alt="Mortgage financing" />
                 </div>
                 <div className="news-content">
-                  <h3>Financement immobilier</h3>
-                  <p>Vous êtes-vous récemment demandé combien d'argent vous devez à votre propriétaire ?</p>
-                  <a style={{textDecoration: "none"}} href="#" className="btn-yellow-news">Plus d'informations</a>
+                  <h3>Mortgage financing</h3>
+                  <p>Have you recently asked yourself how much money you are paying to your landlord?</p>
+                  <a style={{textDecoration: "none"}} href="#" className="btn-yellow-news">Learn more</a>
                 </div>
               </div>
 
-              {/* CARTE 2 */}
+              {/* CARD 2 */}
               <div className="news-card">
                 <div className="news-image-box">
-                  <img src="/img/finant2.avif" alt="Restructuration de la dette" />
+                  <img src="/img/finant2.avif" alt="Debt restructuring" />
                 </div>
                 <div className="news-content">
-                  <h3>Restructuration de la dette</h3>
-                  <p>Quels sont les facteurs clés d'un refinancement ? Voici deux exemples concrets.</p>
-                  <a style={{textDecoration: "none"}} href="#" className="btn-yellow-news">Plus d'informations</a>
+                  <h3>Debt restructuring</h3>
+                  <p>What are the key factors of refinancing? Here are two concrete examples.</p>
+                  <a style={{textDecoration: "none"}} href="#" className="btn-yellow-news">Learn more</a>
                 </div>
               </div>
 
-              {/* CARTE 3 */}
+              {/* CARD 3 */}
               <div className="news-card">
                 <div className="news-image-box">
-                  <img src="/img/finant3.avif" alt="Construction de logement" />
+                  <img src="/img/finant3.avif" alt="Home construction" />
                 </div>
                 <div className="news-content">
-                  <h3>Construction de logement</h3>
-                  <p>Tout sur le plan de relance économique et les aides à l'investissement immobilier.</p>
-                  <a style={{textDecoration: "none"}} href="#" className="btn-yellow-news">Plus d'informations</a>
+                  <h3>Home construction</h3>
+                  <p>All about the economic stimulus plan and subsidies for real estate investment.</p>
+                  <a style={{textDecoration: "none"}} href="#" className="btn-yellow-news">Learn more</a>
                 </div>
               </div>
             </div>
@@ -160,42 +160,42 @@ export default function Hero() {
           </div>
         </section>
 
-        {/* SECTION ACCOMPAGNEMENT & CREDITS */}
+        {/* ADVISORY & LOANS SECTION */}
         <section className="credit-section">
           
-          {/* CONSULTATION PERSO */}
+          {/* PERSONAL CONSULTATION */}
           <div className="credit-container">
             <div className="credit-image-box">
-              <img src="/img/sofa.png" alt="Consultation CorusBank" />
+              <img src="/img/sofa.png" alt="CorusBank Consultation" />
             </div>
             <div className="credit-content">
               <div className="credit-accent-line"></div>
-              <h2>Notre priorité : une consultation personnalisée sans conditions.</h2>
+              <h2>Our priority: personalized consultation with zero commitments.</h2>
               <p>
-                Vous bénéficierez d'un accompagnement personnalisé tout au long du processus de consultation. 
-                Nous sommes à votre disposition par téléphone, en visioconférence ou en personne.
-                Nos experts travaillent avec vous pour trouver la solution de financement idéale, sans renégociation, sans frais supplémentaires liés à votre solvabilité et sans coûts cachés.
+                You will benefit from dedicated guidance throughout the consultation process. 
+                We are available by phone, video call, or in person. 
+                Our experts work with you to find the ideal financing solution—without renegotiation, extra creditworthiness fees, or hidden costs.
               </p>
               <a style={{textDecoration: "none"}} href="#calculateur" className="btn-yellow-pill">
-                Accédez au calculateur de prêt ➔
+                Access the loan calculator ➔
               </a>
             </div>
           </div>
 
-          {/* RAPPEL OFFRE DE PRÊT */}
+          {/* LOAN OFFER REMINDER */}
           <div className="credit-container">
             <div className="credit-content">
               <div className="credit-accent-line"></div>
-              <h2>Corus Immo : Lancez la construction de votre maison de rêve.</h2>
+              <h2>Corus Immo: Start building your dream home today.</h2>
               <p>
-                Avec nous, vous bénéficiez des meilleures conditions du marché, sans aucun frais caché, et de conseils compétents dès la première consultation.
+                Enjoy market-leading conditions, absolute transparency with no hidden fees, and expert guidance right from your first consultation.
               </p>
               <a style={{textDecoration: "none"}} href="/calcul-pret" className="btn-yellow-pill">
-                Découvrir Corus Immo ➔
+                Discover Corus Immo ➔
               </a>
             </div>
             <div className="credit-image-box">
-              <img src="/img/wohnhome.png" alt="Offre Corus Immo" />
+              <img src="/img/wohnhome.png" alt="Corus Immo Offer" />
             </div>
           </div>
 

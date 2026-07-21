@@ -148,13 +148,13 @@ export default function Navbar() {
                 
                 <ul className="dropdown-menu button-dropdown">
                   <li>
-                    <Link href="/register" onClick={() => setIsOpen(false)}>
+                    <Link href="/de/register" onClick={() => setIsOpen(false)}>
                       <strong>CorusBank Konto</strong>
                       <p>Banking nach Ihren Vorstellungen. Personalisierbar, einfach und transparent.</p>
                     </Link>
                   </li>
                   <li>
-                    <Link href="/register" onClick={() => setIsOpen(false)}>
+                    <Link href="/de/register" onClick={() => setIsOpen(false)}>
                       <strong>Corus Flex Sparen</strong>
                       <p>Sparen Sie völlig flexibel mit täglichem Zugriff auf Ihr Geld.</p>
                     </Link>
@@ -172,12 +172,12 @@ export default function Navbar() {
                     
                     <ul className="sub-dropdown-menu">
                       <li>
-                        <Link href="/register" onClick={() => setIsOpen(false)}>
+                        <Link href="/de/register" onClick={() => setIsOpen(false)}>
                           Klassisches Wertpapierdepot
                         </Link>
                       </li>
                       <li>
-                        <Link href="/register" onClick={() => setIsOpen(false)}>
+                        <Link href="/de/register" onClick={() => setIsOpen(false)}>
                           Wertpapiersparpläne
                         </Link>
                       </li>

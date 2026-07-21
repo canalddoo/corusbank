@@ -31,10 +31,10 @@ export default function BankCardPage() {
   const [profile, setProfile] = useState<UserProfileData | null>(null);
   const [error, setError] = useState("");
 
-  // Regroupement des requêtes au chargement pour un état loading propre
+  // Grouping requests on load for a clean loading state
   const fetchInitialData = async () => {
     try {
-      // 1. Récupération des données de la carte
+      // 1. Retrieve card data
       const cardRes = await fetch("/api/user/card");
       if (cardRes.ok) {
         const data = await cardRes.json();
@@ -42,17 +42,17 @@ export default function BankCardPage() {
         setCardData(data.cardInfo);
       }
 
-      // 2. Récupération du profil utilisateur
+      // 2. Retrieve user profile
       const profileRes = await fetch("/api/user/details");
       if (profileRes.ok) {
         const data = await profileRes.json();
         setProfile(data.user);
       } else {
-        setError("Impossible de charger vos données utilisateur.");
+        setError("Unable to load your user data.");
       }
     } catch (err) {
-      console.error("Erreur chargement des données:", err);
-      setError("Erreur réseau lors de la communication avec le serveur.");
+      console.error("Error loading data:", err);
+      setError("Network error while communicating with the server.");
     } finally {
       setLoading(false);
     }
@@ -68,7 +68,7 @@ export default function BankCardPage() {
       const res = await fetch("/api/user/card", { method: "POST" });
       if (res.ok) {
         setTimeout(async () => {
-          // On recharge uniquement la carte après génération
+          // Refresh card only after generation
           try {
             const cardRes = await fetch("/api/user/card");
             if (cardRes.ok) {
@@ -77,86 +77,86 @@ export default function BankCardPage() {
               setCardData(data.cardInfo);
             }
           } catch (err) {
-            console.error("Erreur rafraîchissement carte:", err);
+            console.error("Error refreshing card:", err);
           }
           setGenerating(false);
         }, 1500);
       } else {
-        alert("Erreur lors de la création de la carte.");
+        alert("Error creating card.");
         setGenerating(false);
       }
     } catch (err) {
-      alert("Erreur réseau.");
+      alert("Network error.");
       setGenerating(false);
     }
   };
 
   const bankBic = "SPBAATWWXXX";
-  const displayIban = profile?.iban || "Non renseigné";
+  const displayIban = profile?.iban || "Not provided";
 
   if (loading) {
     return (
       <div style={{ textAlign: "center", padding: "50px" }}>
-        <p style={{ color: "#777" }}>Chargement de vos options sécurisées...</p>
+        <p style={{ color: "#777" }}>Loading your secure options...</p>
       </div>
     );
   }
 
   return (
     <div className="b99-view-wrapper">
-      {/* BANNIÈRE */}
+      {/* BANNER */}
       <div className="b99-finance-banner" style={{ marginBottom: "25px" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%", flexWrap: "wrap", gap: "15px" }}>
           <div>
-            <h2>Mes Cartes Bancaires</h2>
-            <p>Gérer vos options de paiement et visualisez votre carte de débit physique CorusBank.</p>
+            <h2>My Bank Cards</h2>
+            <p>Manage your payment options and view your physical CorusBank debit card.</p>
           </div>
           <Link href="/dashboard" className="b99-details-back-btn" style={{ textDecoration: "none" }}>
-            Retour au tableau de bord
+            Back to dashboard
           </Link>
         </div>
       </div>
 
-      {/* Affichage des erreurs éventuelles sans bloquer l'interface */}
+      {/* Display eventual errors without blocking the interface */}
       {error && <div style={{ color: "red", padding: "10px", textAlign: "center" }}>{error}</div>}
 
       {!hasCard ? (
-        /* PROPOSITION DE CARTE */
+        /* CARD OFFER PROMPT */
         <div className="b99-card-panel" style={{ textAlign: "center", padding: "60px 20px" }}>
           {!generating ? (
             <div style={{ maxWidth: "500px", margin: "0 auto" }}>
               <div style={{ fontSize: "50px", color: "#ffcc00", marginBottom: "20px" }}>
                 💳
               </div>
-              <h3 style={{ marginBottom: "10px" }}>Vous n'avez pas encore de carte de débit</h3>
+              <h3 style={{ marginBottom: "10px" }}>You don't have a debit card yet</h3>
               <p style={{ color: "#666", fontSize: "14px", marginBottom: "30px", lineHeight: "1.5" }}>
-                Générez instantanément votre carte Mastercard® ChorusBank pour effectuer vos transactions en ligne et en magasin en toute sécurité.
+                Instantly generate your ChorusBank Mastercard® to safely perform your online and in-store transactions.
               </p>
               <button onClick={handleCreateCard} className="primary-action-yellow-btn" style={{ padding: "12px 30px", fontSize: "15px", cursor: "pointer" }}>
-                Obtenir une carte
+                Get a card
               </button>
             </div>
           ) : (
-            /* LOADER LORS DE LA CRÉATION */
+            /* LOADER DURING CREATION */
             <div style={{ padding: "30px 0" }}>
               <div className="b99-spinner-loader" style={{ margin: "0 auto" }}></div>
-              <h4 style={{ marginTop: "25px", color: "#111" }}>Génération de vos identifiants bancaires sécurisés...</h4>
-              <p style={{ color: "#777", fontSize: "13px" }}>Calcul des clés cryptographiques EMV et CVC en cours</p>
+              <h4 style={{ marginTop: "25px", color: "#111" }}>Generating your secure banking credentials...</h4>
+              <p style={{ color: "#777", fontSize: "13px" }}>Calculating EMV and CVC cryptographic keys</p>
             </div>
           )}
         </div>
       ) : (
-        /* ÉCRAN PRINCIPAL : REPRODUCTION DU VERSO */
+        /* MAIN SCREEN: REPRODUCTION OF THE CARD BACK */
         <div className="b99-card-layout-grid">
           
           <div className="b99-card-panel" style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "40px 20px" }}>
             <div className={`b99-physical-card-back ${isCardFrozen ? "card-frozen" : ""}`}>
               
-              {/* Mentions du haut et Bande Magnétique */}
+              {/* Top notice and Magnetic Stripe */}
               <div className="b99-card-top-texts">Eine Karte der CorusBank AG &nbsp;&nbsp; BIC: SPBAATWW &nbsp;&nbsp; Hotline: 01 90202</div>
               <div className="b99-card-magnetic-stripe"></div>
 
-              {/* Ligne Médiane : QR Code et Logos Techniques */}
+              {/* Middle Row: QR Code and Technical Logos */}
               <div className="b99-card-mid-row">
                 <div className="b99-card-qrcode-mock" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '3px', background: '#ffffff' }}>
                   {cardData?.iban ? (
@@ -181,10 +181,10 @@ export default function BankCardPage() {
                 </div>
               </div>
 
-              {/* Bloc Principal des Données Typographiques (Dos de carte) */}
+              {/* Main Block for Typographic Data (Back of Card) */}
               <div className="b99-card-back-data-block">
                 
-                {/* Colonne de Gauche */}
+                {/* Left Column */}
                 <div className="data-col-left">
                   <div className="b99-data-row">
                     <span className="b99-label">Karten-Nr.</span>
@@ -200,7 +200,7 @@ export default function BankCardPage() {
                   </div>
                 </div>
 
-                {/* Colonne de Droite */}
+                {/* Right Column */}
                 <div className="data-col-right">
                   <div className="b99-data-row inline-row">
                     <span className="b99-label">Gültig bis</span>
@@ -220,30 +220,30 @@ export default function BankCardPage() {
             </div>
           </div>
 
-          {/* SÉCURITÉ */}
+          {/* SECURITY */}
           <div className="b99-card-panel">
-            <div className="gray-header-strip-title">Options de sécurité de la carte</div>
+            <div className="gray-header-strip-title">Card Security Options</div>
             <div className="panel-inner-padding" style={{ display: "flex", flexDirection: "column", gap: "18px", padding: "20px" }}>
               
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid #eee", paddingBottom: "12px" }}>
                 <div>
-                  <strong style={{ display: "block", fontSize: "15px" }}>Statut de la carte</strong>
-                  <span style={{ fontSize: "13px", color: "#666" }}>Geler temporairement l'usage de vos identifiants</span>
+                  <strong style={{ display: "block", fontSize: "15px" }}>Card Status</strong>
+                  <span style={{ fontSize: "13px", color: "#666" }}>Temporarily freeze the usage of your credentials</span>
                 </div>
                 <button 
                   onClick={() => setIsCardFrozen(!isCardFrozen)}
                   className={`b99-toggle-action-btn ${isCardFrozen ? "btn-danger" : "btn-success"}`}
                 >
-                  {isCardFrozen ? "❄️ Geler la carte" : "🟢 Carte Active"}
+                  {isCardFrozen ? "❄️ Freeze Card" : "🟢 Active Card"}
                 </button>
               </div>
 
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <div>
-                  <strong style={{ display: "block", fontSize: "15px" }}>Paiements internet</strong>
-                  <span style={{ fontSize: "13px", color: "#666" }}>Autoriser l'utilisation du numéro de carte en ligne</span>
+                  <strong style={{ display: "block", fontSize: "15px" }}>Online Payments</strong>
+                  <span style={{ fontSize: "13px", color: "#666" }}>Allow the use of the card number online</span>
                 </div>
-                <span style={{ fontWeight: "bold", color: "#2e7d32", fontSize: "14px" }}>✓ Activé</span>
+                <span style={{ fontWeight: "bold", color: "#2e7d32", fontSize: "14px" }}>✓ Enabled</span>
               </div>
 
             </div>

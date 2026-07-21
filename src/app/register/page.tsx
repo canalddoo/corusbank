@@ -3,10 +3,10 @@
 import { useState } from "react";
 
 export default function RegisterForm() {
-  // Les étapes vont maintenant de 2 à 4 (2: Personnel, 3: Finances, 4: Aspects juridiques)
+  // Steps now range from 2 to 4 (2: Personal, 3: Financial, 4: Legal aspects)
   const [currentStep, setCurrentStep] = useState<2 | 3 | 4>(2);
 
-  // État de l'étape 2 : Données Personnelles
+  // Step 2 State: Personal Data
   const [personalData, setPersonalData] = useState({
     title1: "",
     title2: "",
@@ -15,7 +15,7 @@ export default function RegisterForm() {
     birthdate: "",
     birthCountry: "",
     nationality: "",
-    otherNationalities: "Non",
+    otherNationalities: "No",
     civilStatus: "",
     phonePassword: "",
     address: "",
@@ -27,26 +27,26 @@ export default function RegisterForm() {
     agreeContact: false
   });
 
-  // État de l'étape 3 : Données Financières
+  // Step 3 State: Financial Data
   const [financialData, setFinancialData] = useState({
     monthlyNetIncome: "",
     monthlyDeposits: "",
     incomeSources: [] as string[],
-    hasCar: "Non",
+    hasCar: "No",
     housingStatus: "",
     dependentChildren: "",
     professionalGroup: "",
     industry: "",
-    foreignPayments: "Non",
+    foreignPayments: "No",
     openingReason: "",
-    taxResidence: "Exclusivement Autriche",
-    usLinks: "Non"
+    taxResidence: "Exclusively Austria",
+    usLinks: "No"
   });
 
-  // État de l'étape 4 : Aspects Juridiques
+  // Step 4 State: Legal Aspects
   const [legalData, setLegalData] = useState({
     acceptTerms: false,
-    pepStatus: "Non",
+    pepStatus: "No",
     fatcaDeclaration: false
   });
 
@@ -74,7 +74,7 @@ export default function RegisterForm() {
       setCurrentStep(4);
       window.scrollTo(0, 0);
     } else {
-      // Étape 4 finale : Soumission au serveur backend
+      // Final Step 4: Submission to backend server
       try {
         const response = await fetch("/api/auth/register", {
           method: "POST",
@@ -85,15 +85,15 @@ export default function RegisterForm() {
         const data = await response.json();
 
         if (response.ok && data.success) {
-          alert("Inscription complétée et enregistrée en base !");
-          // Optionnel : redirection vers le tableau de bord ou login
+          alert("Registration completed and saved to the database!");
+          // Optional: redirect to dashboard or login
           // window.location.href = "/login";
         } else {
-          alert(data.error || "Une erreur est survenue lors de la validation.");
+          alert(data.error || "An error occurred during validation.");
         }
       } catch (error) {
-        console.error("Erreur réseau :", error);
-        alert("Impossible de joindre le serveur.");
+        console.error("Network error:", error);
+        alert("Unable to reach the server.");
       }
     }
   };
@@ -109,47 +109,47 @@ export default function RegisterForm() {
 
   return (
     <div className="register-container">
-      {/* 1. BARRE DE PROGRESSION VISUELLE AJUSTÉE (4 ÉTAPES) */}
+      {/* 1. ADJUSTED VISUAL PROGRESS BAR (4 STEPS) */}
       <div className="progress-stepper">
         <div className="step-item completed">
           <div className="step-circle"><i className="fa-solid fa-check"></i></div>
-          <span>1. Sélection des produits</span>
+          <span>1. Product selection</span>
         </div>
         <div className={`step-item ${currentStep === 2 ? "active" : "completed"}`}>
           <div className="step-circle">{currentStep > 2 ? <i className="fa-solid fa-check"></i> : null}</div>
-          <span>2. Personnel</span>
+          <span>2. Personal details</span>
         </div>
         <div className={`step-item ${currentStep === 3 ? "active" : currentStep > 3 ? "completed" : ""}`}>
           <div className="step-circle">{currentStep > 3 ? <i className="fa-solid fa-check"></i> : null}</div>
-          <span>3. Finances</span>
+          <span>3. Financial details</span>
         </div>
         <div className={`step-item ${currentStep === 4 ? "active" : ""}`}>
           <div className="step-circle"></div>
-          <span>4. Aspects juridiques</span>
+          <span>4. Legal aspects</span>
         </div>
       </div>
 
-      {/* FORMULAIRE PRINCIPAL */}
+      {/* MAIN FORM */}
       <form onSubmit={handleNext} className="register-card">
         
         {/* ==============================================
-            ÉTAPE 2 : DONNÉES PERSONNELLES
+            STEP 2: PERSONAL DATA
             ============================================== */}
         {currentStep === 2 && (
           <div className="form-section animate-fade">
-            <h2>Données personnelles</h2>
+            <h2>Personal details</h2>
             
             <div className="form-group row-flex">
-              <label className="main-label">titre</label>
+              <label className="main-label">Title</label>
               <div className="inputs-container split-2">
                 <select 
                   value={personalData.title1} 
                   onChange={(e) => setPersonalData({...personalData, title1: e.target.value})}
                   required
                 >
-                  <option value="">Veuillez sélectionner un t...</option>
-                  <option value="M.">M.</option>
-                  <option value="Mme">Mme</option>
+                  <option value="">Please select a t...</option>
+                  <option value="Mr.">Mr.</option>
+                  <option value="Ms.">Ms.</option>
                   <option value="Prof.">Prof.</option>
                   <option value="DI Mag. (FH)">DI Mag. (FH)</option>
                 </select>
@@ -157,14 +157,14 @@ export default function RegisterForm() {
                   value={personalData.title2} 
                   onChange={(e) => setPersonalData({...personalData, title2: e.target.value})}
                 >
-                  <option value="">Veuillez sélectionner un t...</option>
+                  <option value="">Please select a t...</option>
                   <option value="MPS">MPS</option>
                 </select>
               </div>
             </div>
 
             <div className="form-group row-flex">
-              <label className="main-label">Prénom(s) *</label>
+              <label className="main-label">First name(s) *</label>
               <div className="inputs-container has-info">
                 <input 
                   type="text" 
@@ -177,7 +177,7 @@ export default function RegisterForm() {
             </div>
 
             <div className="form-group row-flex">
-              <label className="main-label">Nom de famille *</label>
+              <label className="main-label">Last name *</label>
               <div className="inputs-container has-info">
                 <input 
                   type="text" 
@@ -190,7 +190,7 @@ export default function RegisterForm() {
             </div>
 
             <div className="form-group row-flex">
-              <label className="main-label">date de naissance *</label>
+              <label className="main-label">Date of birth *</label>
               <div className="inputs-container has-info">
                 <input 
                   type="date" 
@@ -203,14 +203,15 @@ export default function RegisterForm() {
             </div>
 
             <div className="form-group row-flex">
-              <label className="main-label">Pays de naissance *</label>
+              <label className="main-label">Country of birth *</label>
+              
               <div className="inputs-container has-info">
                 <select 
                   value={personalData.birthCountry} 
                   onChange={(e) => setPersonalData({...personalData, birthCountry: e.target.value})}
                   required
                 >
-                  <option value="">Veuillez sélectionner</option>
+                  <option value="">Please choose</option>
 <option value="Afghanistan">Afghanistan</option>
 <option value="Afrique du Sud">Afrique du Sud</option>
 <option value="Albanie">Albanie</option>
@@ -409,50 +410,51 @@ export default function RegisterForm() {
                 </select>
                 <i className="fa-solid fa-circle-info info-icon"></i>
               </div>
+
             </div>
 
             <div className="form-group row-flex">
-              <label className="main-label">Ajouter d'autres nationalités ? *</label>
+              <label className="main-label">Add other nationalities? *</label>
               <div className="inputs-container radio-group">
                 <label>
                   <input 
                     type="radio" 
                     name="otherNationalities" 
-                    value="Non" 
-                    checked={personalData.otherNationalities === "Non"} 
+                    value="No" 
+                    checked={personalData.otherNationalities === "No"} 
                     onChange={(e) => setPersonalData({...personalData, otherNationalities: e.target.value})} 
-                  /> Non
+                  /> No
                 </label>
                 <label>
                   <input 
                     type="radio" 
                     name="otherNationalities" 
-                    value="Et" 
-                    checked={personalData.otherNationalities === "Et"} 
+                    value="Yes" 
+                    checked={personalData.otherNationalities === "Yes"} 
                     onChange={(e) => setPersonalData({...personalData, otherNationalities: e.target.value})} 
-                  /> Et
+                  /> Yes
                 </label>
               </div>
             </div>
 
             <div className="form-group row-flex">
-              <label className="main-label">État civil *</label>
+              <label className="main-label">Marital status *</label>
               <div className="inputs-container">
                 <select 
                   value={personalData.civilStatus} 
                   onChange={(e) => setPersonalData({...personalData, civilStatus: e.target.value})}
                   required
                 >
-                  <option value="">Veuillez sélectionner</option>
-                  <option value="Célibataire">Célibataire</option>
-                  <option value="Marié(e)">Marié(e)</option>
-                  <option value="Divorcé(e)">Divorcé(e)</option>
+                  <option value="">Please select</option>
+                  <option value="Single">Single</option>
+                  <option value="Married">Married</option>
+                  <option value="Divorced">Divorced</option>
                 </select>
               </div>
             </div>
 
             <div className="form-group row-flex">
-              <label className="main-label">Mot de passe du téléphone *</label>
+              <label className="main-label">Phone password *</label>
               <div className="inputs-container vertical-stack">
                 <input 
                   type="password" 
@@ -461,16 +463,16 @@ export default function RegisterForm() {
                   required 
                 />
                 <div className="info-box-gray">
-                  Le mot de passe téléphonique est requis pour l'identification lors des demandes de renseignements par téléphone.
+                  The phone password is required for identification during telephone inquiries.
                 </div>
               </div>
             </div>
 
             <hr className="section-divider" />
-            <h3>Adresse de signalement</h3>
+            <h3>Residential address</h3>
 
             <div className="form-group row-flex">
-              <label className="main-label">Rue, numéro de maison *</label>
+              <label className="main-label">Street, house number *</label>
               <div className="inputs-container has-info">
                 <input 
                   type="text" 
@@ -483,18 +485,18 @@ export default function RegisterForm() {
             </div>
 
             <div className="form-group row-flex">
-              <label className="main-label">Code postal Ville *</label>
+              <label className="main-label">Postal code City *</label>
               <div className="inputs-container split-zip">
                 <input 
                   type="text" 
-                  placeholder="CP" 
+                  placeholder="ZIP" 
                   value={personalData.postalCode} 
                   onChange={(e) => setPersonalData({...personalData, postalCode: e.target.value})} 
                   required 
                 />
                 <input 
                   type="text" 
-                  placeholder="Ville" 
+                  placeholder="City" 
                   value={personalData.city} 
                   onChange={(e) => setPersonalData({...personalData, city: e.target.value})} 
                   required 
@@ -503,10 +505,10 @@ export default function RegisterForm() {
             </div>
 
             <hr className="section-divider" />
-            <h3>Coordonnées</h3>
+            <h3>Contact details</h3>
 
             <div className="form-group row-flex">
-              <label className="main-label">numéro de téléphone portable *</label>
+              <label className="main-label">Mobile phone number *</label>
               <div className="inputs-container has-info">
                 <input 
                   type="tel" 
@@ -519,7 +521,7 @@ export default function RegisterForm() {
             </div>
 
             <div className="form-group row-flex">
-              <label className="main-label">E-Mail Adresse *</label>
+              <label className="main-label">Email address *</label>
               <div className="inputs-container has-info">
                 <input 
                   type="email" 
@@ -542,7 +544,7 @@ export default function RegisterForm() {
                   required
                 />
                 <label htmlFor="agreePrecontractual">
-                  Corusbank m'enverra les informations précontractuelles et contractuelles relatives au produit demandé à l'adresse électronique que j'ai fournie. Je confirme par la présente leur exactitude.
+                  Corusbank will send me pre-contractual and contractual information relating to the requested product to the email address I provided. I hereby confirm its accuracy.
                 </label>
               </div>
             </div>
@@ -550,14 +552,14 @@ export default function RegisterForm() {
         )}
 
         {/* ==============================================
-            ÉTAPE 3 : DONNÉES FINANCIÈRES
+            STEP 3: FINANCIAL DATA
             ============================================== */}
         {currentStep === 3 && (
           <div className="form-section animate-fade">
-            <h2>données financières</h2>
+            <h2>Financial details</h2>
 
             <div className="form-group row-flex">
-              <label className="main-label">Revenu net mensuel *</label>
+              <label className="main-label">Monthly net income *</label>
               <div className="inputs-container input-with-unit has-info">
                 <input 
                   type="number" 
@@ -571,37 +573,37 @@ export default function RegisterForm() {
             </div>
 
             <div className="form-group row-flex">
-              <label className="main-label">Entrées mensuelles sur le compte *</label>
+              <label className="main-label">Monthly account deposits *</label>
               <div className="inputs-container">
                 <select 
                   value={financialData.monthlyDeposits}
                   onChange={(e) => setFinancialData({...financialData, monthlyDeposits: e.target.value})}
                   required
                 >
-                  <option value="">Veuillez sélectionner</option>
-                  <option value="jusqu'à 1 000 EUR">jusqu'à 1 000 EUR</option>
-                  <option value="1.001 EUR - 1.500 EUR">1.001 EUR - 1.500 EUR</option>
-                  <option value="1.501 EUR - 2.000 EUR">1.501 EUR - 2.000 EUR</option>
-                  <option value="2.001 EUR - 2.500 EUR">2.001 EUR - 2.500 EUR</option>
-                  <option value="2.501 EUR - 3.000 EUR">2.501 EUR - 3.000 EUR</option>
-                  <option value="3.001 EUR - 3.500 EUR">3.001 EUR - 3.500 EUR</option>
-                  <option value="3.501 EUR - 4.000 EUR">3.501 EUR - 4.000 EUR</option>
-                  <option value="4.001 EUR - 4.500 EUR">4.001 EUR - 4.500 EUR</option>
-                  <option value="4.501 EUR - 5.000 EUR">4.501 EUR - 5.000 EUR</option>
-                  <option value="plus de 5 000 EUR">plus de 5 000 EUR</option>
+                  <option value="">Please select</option>
+                  <option value="up to 1,000 EUR">up to 1,000 EUR</option>
+                  <option value="1,001 EUR - 1,500 EUR">1,001 EUR - 1,500 EUR</option>
+                  <option value="1,501 EUR - 2,000 EUR">1,501 EUR - 2,000 EUR</option>
+                  <option value="2,001 EUR - 2,500 EUR">2,001 EUR - 2,500 EUR</option>
+                  <option value="2,501 EUR - 3,000 EUR">2,501 EUR - 3,000 EUR</option>
+                  <option value="3,001 EUR - 3,500 EUR">3,001 EUR - 3,500 EUR</option>
+                  <option value="3,501 EUR - 4,000 EUR">3,501 EUR - 4,000 EUR</option>
+                  <option value="4,001 EUR - 4,500 EUR">4,001 EUR - 4,500 EUR</option>
+                  <option value="4,501 EUR - 5,000 EUR">4,501 EUR - 5,000 EUR</option>
+                  <option value="over 5,000 EUR">over 5,000 EUR</option>
                 </select>
               </div>
             </div>
 
             <div className="form-group row-flex alignment-top">
-              <label className="main-label">D'où proviennent vos revenus actuels ?</label>
+              <label className="main-label">Where does your current income come from?</label>
               <div className="inputs-container checkbox-list">
                 {[
-                  "Salaire (employé)", "Activités indépendantes", 
-                  "Pension publique ou privée / revenus provenant d'indemnités d'assurance", 
-                  "Revenus provenant des prestations sociales", "Revenus du (conjoint/partenaire)", 
-                  "Règlement du divorce, pension alimentaire", "Rendement du capital / Rendement de l'investissement", 
-                  "patrimoine", "Bourse", "Gain à la loterie", "Dons de fondations", "Aucun revenu"
+                  "Salary (employee)", "Self-employed activities", 
+                  "Public or private pension / insurance benefits income", 
+                  "Social benefits income", "Spouse/partner income", 
+                  "Divorce settlement, alimony", "Capital gains / Investment returns", 
+                  "Assets/Wealth", "Scholarship", "Lottery winnings", "Foundation grants", "No income"
                 ].map((source) => (
                   <label key={source} className="checkbox-item">
                     <input 
@@ -616,71 +618,71 @@ export default function RegisterForm() {
             </div>
 
             <hr className="section-divider" />
-            <h3>Dépenses mensuelles</h3>
+            <h3>Monthly expenses</h3>
 
             <div className="form-group row-flex">
-              <label className="main-label">Possédez-vous une voiture ?</label>
+              <label className="main-label">Do you own a car?</label>
               <div className="inputs-container radio-group">
                 <label>
                   <input 
                     type="radio" 
                     name="hasCar" 
-                    value="Non"
-                    checked={financialData.hasCar === "Non"}
+                    value="No"
+                    checked={financialData.hasCar === "No"}
                     onChange={(e) => setFinancialData({...financialData, hasCar: e.target.value})}
-                  /> Non
+                  /> No
                 </label>
                 <label>
                   <input 
                     type="radio" 
                     name="hasCar" 
-                    value="Et"
-                    checked={financialData.hasCar === "Et"}
+                    value="Yes"
+                    checked={financialData.hasCar === "Yes"}
                     onChange={(e) => setFinancialData({...financialData, hasCar: e.target.value})}
-                  /> Et
+                  /> Yes
                 </label>
               </div>
             </div>
 
             <div className="form-group row-flex">
-              <label className="main-label">Situation du logement</label>
+              <label className="main-label">Housing situation</label>
               <div className="inputs-container">
                 <select 
                   value={financialData.housingStatus}
                   onChange={(e) => setFinancialData({...financialData, housingStatus: e.target.value})}
                 >
-                  <option value="">Veuillez sélectionner</option>
-                  <option value="Chez les parents">Chez les parents</option>
-                  <option value="Possédé">Possédé</option>
-                  <option value="Dans un appartement en copropriété">Dans un appartement en copropriété</option>
-                  <option value="À louer">À louer</option>
+                  <option value="">Please select</option>
+                  <option value="Living with parents">Living with parents</option>
+                  <option value="Owner-occupied house">Owner-occupied house</option>
+                  <option value="Owner-occupied apartment">Owner-occupied apartment</option>
+                  <option value="Renting">Renting</option>
                 </select>
               </div>
             </div>
 
             <hr className="section-divider" />
-            <h3>résidence fiscale</h3>
+            <h3>Tax residence</h3>
 
             <div className="form-group row-flex alignment-top">
-              <label className="main-label">Résidence fiscale hors d'Autriche ?</label>
+              <label className="main-label">Tax residence outside of Austria?</label>
               <div className="inputs-container vertical-radio-list">
                 <label>
                   <input 
                     type="radio" 
                     name="taxResidence" 
-                    value="Exclusivement Autriche"
-                    checked={financialData.taxResidence === "Exclusivement Autriche"}
+                    value="Exclusively Austria"
+                    checked={financialData.taxResidence === "Exclusively Austria"}
                     onChange={(e) => setFinancialData({...financialData, taxResidence: e.target.value})}
-                  /> Ils sont exclusivement résidents fiscaux en Autriche.
+                  /> You are tax resident exclusively in Austria.
                 </label>
                 <label>
                   <input 
                     type="radio" 
                     name="taxResidence" 
-                    value="Autriche et Autre"
-                    checked={financialData.taxResidence === "Autriche et Autre"}
+                    value="Austria and Other"
+                    checked={financialData.taxResidence === "Austria and Other"}
                     onChange={(e) => setFinancialData({...financialData, taxResidence: e.target.value})}
-                  /> Ils sont résidents fiscaux en Autriche et dans au moins un autre pays.
+                  /> You are tax resident in Austria and in at least one other country.
                 </label>
               </div>
             </div>
@@ -688,37 +690,37 @@ export default function RegisterForm() {
         )}
 
         {/* ==============================================
-            ÉTAPE 4 : ASPECTS JURIDIQUES (NOUVEAU)
+            STEP 4: LEGAL ASPECTS
             ============================================== */}
         {currentStep === 4 && (
           <div className="form-section animate-fade">
-            <h2>Aspects juridiques</h2>
+            <h2>Legal aspects</h2>
 
             <div className="form-group row-flex alignment-top">
-              <label className="main-label">Personne politiquement exposée (PPE) *</label>
+              <label className="main-label">Politically Exposed Person (PEP) *</label>
               <div className="inputs-container vertical-stack">
                 <div className="radio-group">
                   <label>
                     <input 
                       type="radio" 
                       name="pepStatus" 
-                      value="Non"
-                      checked={legalData.pepStatus === "Non"}
+                      value="No"
+                      checked={legalData.pepStatus === "No"}
                       onChange={(e) => setLegalData({...legalData, pepStatus: e.target.value})}
-                    /> Non
+                    /> No
                   </label>
                   <label>
                     <input 
                       type="radio" 
                       name="pepStatus" 
-                      value="Oui"
-                      checked={legalData.pepStatus === "Oui"}
+                      value="Yes"
+                      checked={legalData.pepStatus === "Yes"}
                       onChange={(e) => setLegalData({...legalData, pepStatus: e.target.value})}
-                    /> Oui
+                    /> Yes
                   </label>
                 </div>
                 <div className="info-box-gray">
-                  Êtes-vous, ou un membre de votre famille proche, une personne exerçant ou ayant exercé d'importantes fonctions publiques au cours de l'année écoulée ?
+                  Are you, or an immediate family member, a person who holds or has held important public functions in the past year?
                 </div>
               </div>
             </div>
@@ -726,7 +728,7 @@ export default function RegisterForm() {
             <hr className="section-divider" />
 
             <div className="form-group row-flex alignment-top">
-              <label className="main-label">Conditions Générales de Vente *</label>
+              <label className="main-label">General Terms and Conditions *</label>
               <div className="inputs-container checkbox-wrapper info-box-gray">
                 <input 
                   type="checkbox" 
@@ -736,14 +738,14 @@ export default function RegisterForm() {
                   required
                 />
                 <label htmlFor="acceptTerms">
-                  <strong>Je confirme avoir lu et accepté sans réserve les Conditions Générales de Vente (CGV).</strong>
-                  <p>Je reconnais également avoir pris connaissance des informations relatives à la protection des dépôts et à la politique de confidentialité des données personnelles de la banque.</p>
+                  <strong>I confirm that I have read and accepted the General Terms and Conditions without reservation.</strong>
+                  <p>I also acknowledge that I have read the information regarding deposit protection and the bank's personal data privacy policy.</p>
                 </label>
               </div>
             </div>
 
             <div className="form-group row-flex alignment-top">
-              <label className="main-label">Statut fiscal US (FATCA) *</label>
+              <label className="main-label">US Tax Status (FATCA) *</label>
               <div className="inputs-container checkbox-wrapper info-box-gray">
                 <input 
                   type="checkbox" 
@@ -753,25 +755,25 @@ export default function RegisterForm() {
                   required
                 />
                 <label htmlFor="fatcaDeclaration">
-                  Je déclare par la présente que je ne suis pas un citoyen américain et que je ne suis pas considéré comme un résident fiscal aux États-Unis aux fins de l'impôt fédéral (loi FATCA).
+                  I hereby declare that I am not a US citizen and that I am not considered a US tax resident for federal tax purposes (FATCA Act).
                 </label>
               </div>
             </div>
           </div>
         )}
 
-        {/* BOUTONS D'ACTION AVEC CONDITION D'INSCRIPTION FINALE */}
+        {/* ACTION BUTTONS WITH FINAL REGISTRATION CONDITION */}
         <div className="form-actions">
           {currentStep > 2 && (
             <button type="button" className="btn-secondary" onClick={handleBack}>
-              Retour
+              Back
             </button>
           )}
           <button type="submit" className="btn-primary">
-            {currentStep === 4 ? "S'inscrire" : "Suivant"}
+            {currentStep === 4 ? "Register" : "Next"}
           </button>
         </div>
-      </form>
+      </form>  
     </div>
   );
 }

@@ -2,20 +2,20 @@
 
 import { useState, useEffect } from "react";
 
-type TabType = "achat" | "restructuration";
-type InterestType = "reparer" | "variable";
+type TabType = "purchase" | "restructuring";
+type InterestType = "fixed" | "variable";
 
 export default function LoanCalculator() {
-  // Onglet actif
-  const [activeTab, setActiveTab] = useState<TabType>("restructuration");
+  // Active tab
+  const [activeTab, setActiveTab] = useState<TabType>("restructuring");
 
-  // Données des curseurs (Inputs)
+  // Inputs state
   const [purchasePrice, setPurchasePrice] = useState<number>(322000);
   const [debtAmount, setDebtAmount] = useState<number>(87200);
-  const [interestType, setInterestType] = useState<InterestType>("reparer");
+  const [interestType, setInterestType] = useState<InterestType>("fixed");
   const [fixedYears, setFixedYears] = useState<number>(10);
 
-  // Résultats calculés
+  // Calculated results
   const [loanAmount, setLoanAmount] = useState<number>(89000);
   const [totalPayable, setTotalPayable] = useState<number>(0);
   const [nominalRate, setNominalRate] = useState<number>(4.04);
@@ -23,7 +23,7 @@ export default function LoanCalculator() {
   const [totalYears, setTotalYears] = useState<number>(11);
   const [monthlyPayment, setMonthlyPayment] = useState<number>(0);
 
-  // Logique de changement de taux et de durée totale selon la durée fixe sélectionnée
+  // Logic to change rates and duration according to chosen fixed period
   useEffect(() => {
     let baseRate = 4.04;
     let computedTotalYears = 11;
@@ -32,7 +32,7 @@ export default function LoanCalculator() {
       baseRate = 3.00;
       computedTotalYears = 6;
     } else if (fixedYears === 10) {
-      baseRate = 4.04; // Aligné sur ta capture d'écran
+      baseRate = 4.04;
       computedTotalYears = 11;
     } else if (fixedYears === 15) {
       baseRate = 5.00;
@@ -43,22 +43,21 @@ export default function LoanCalculator() {
     }
 
     setNominalRate(baseRate);
-    // Le taux effectif global intègre généralement les frais d'assurance/dossier (simulation ici +0.75%)
+    // Effective annual rate includes fees/insurance (+0.75%)
     setEffectiveRate(parseFloat((baseRate + 0.75).toFixed(2)));
     setTotalYears(computedTotalYears);
   }, [fixedYears]);
 
-  // Synchronisation du montant du financement
+  // Financing amount synchronization
   useEffect(() => {
-    // Exemple de règle de calcul du montant financé : prix d'achat initial - apport ou ajusté par la restructuration
-    if (activeTab === "restructuration") {
-      setLoanAmount(debtAmount + 1800); // Règle purement indicative pour s'aligner sur les 89 000 € pour 87 200 € entrés
+    if (activeTab === "restructuring") {
+      setLoanAmount(debtAmount + 1800);
     } else {
-      setLoanAmount(Math.round(purchasePrice * 0.8)); // 80% du prix d'achat par exemple
+      setLoanAmount(Math.round(purchasePrice * 0.8));
     }
   }, [purchasePrice, debtAmount, activeTab]);
 
-  // Calcul de la mensualité (Formule standard de prêt à taux fixe)
+  // Monthly payment calculation (Fixed-rate standard formula)
   useEffect(() => {
     const monthlyRate = (nominalRate / 100) / 12;
     const totalMonths = totalYears * 12;
@@ -74,7 +73,7 @@ export default function LoanCalculator() {
     }
   }, [loanAmount, nominalRate, totalYears]);
 
-  // Calcul de l'échéance de fin de prêt (à partir de l'année actuelle 2026)
+  // Loan maturity end date calculation
   const currentYear = 2026;
   const endYear = currentYear + totalYears;
 
@@ -82,35 +81,35 @@ export default function LoanCalculator() {
     <section className="calculator-section">
       <div className="calculator-container">
         
-        {/* PARTE GAUCHE : FORMULAIRE ET CONFIGURATION */}
+        {/* LEFT SIDE: FORM & CONFIGURATION */}
         <div className="calculator-card-left">
           
-          {/* SÉLECTEUR D'ONGLETS */}
+          {/* TAB SELECTOR */}
           <div className="calc-tabs">
             <button 
-              className={`calc-tab ${activeTab === "achat" ? "active" : ""}`}
-              onClick={() => setActiveTab("achat")}
+              className={`calc-tab ${activeTab === "purchase" ? "active" : ""}`}
+              onClick={() => setActiveTab("purchase")}
             >
-              <span className="tab-icon">🛍️</span> achat
+              <span className="tab-icon">🛍️</span> Purchase
             </button>
             <button 
-              className={`calc-tab ${activeTab === "restructuration" ? "active" : ""}`}
-              onClick={() => setActiveTab("restructuration")}
+              className={`calc-tab ${activeTab === "restructuring" ? "active" : ""}`}
+              onClick={() => setActiveTab("restructuring")}
             >
-              <span className="tab-icon">🔄</span> Restructuration de la dette
+              <span className="tab-icon">🔄</span> Debt Restructuring
             </button>
           </div>
 
           <div className="calc-form-content">
-            {/* INPUT 1 : PRIX D'ACHAT INITIAL */}
+            {/* INPUT 1: INITIAL PURCHASE PRICE */}
             <div className="calc-input-group">
               <div className="calc-label-row">
-                <label>Prix d'achat initial <span className="info-bubble">?</span></label>
+                <label>Initial purchase price <span className="info-bubble">?</span></label>
                 <div className="input-currency-wrapper">
                   <span className="currency-symbol">€</span>
                   <input 
                     type="text" 
-                    value={purchasePrice.toLocaleString("fr-FR")} 
+                    value={purchasePrice.toLocaleString("en-US")} 
                     readOnly 
                   />
                 </div>
@@ -125,20 +124,20 @@ export default function LoanCalculator() {
                 className="calc-slider"
               />
               <div className="slider-bounds">
-                <span>57 000 €</span>
-                <span>2 000 000 €</span>
+                <span>€57,000</span>
+                <span>€2,000,000</span>
               </div>
             </div>
 
-            {/* INPUT 2 : MONTANT RESTRUCTURATION */}
+            {/* INPUT 2: RESTRUCTURING AMOUNT */}
             <div className="calc-input-group">
               <div className="calc-label-row">
-                <label>Montant de la restructuration de la dette <span className="info-bubble">?</span></label>
+                <label>Debt restructuring amount <span className="info-bubble">?</span></label>
                 <div className="input-currency-wrapper">
                   <span className="currency-symbol">€</span>
                   <input 
                     type="text" 
-                    value={debtAmount.toLocaleString("fr-FR")} 
+                    value={debtAmount.toLocaleString("en-US")} 
                     readOnly 
                   />
                 </div>
@@ -153,20 +152,20 @@ export default function LoanCalculator() {
                 className="calc-slider"
               />
               <div className="slider-bounds">
-                <span>45 200 €</span>
-                <span>172 200 €</span>
+                <span>€45,200</span>
+                <span>€172,200</span>
               </div>
             </div>
 
-            {/* INPUT 3 : INTÉRÊT (RÉPARER / VARIABLE) */}
+            {/* INPUT 3: INTEREST TYPE (FIXED / VARIABLE) */}
             <div className="calc-input-group">
-              <label className="section-label">Intérêt <span className="info-bubble">?</span></label>
+              <label className="section-label">Interest <span className="info-bubble">?</span></label>
               <div className="interest-toggle-buttons">
                 <button 
-                  className={`btn-toggle ${interestType === "reparer" ? "active" : ""}`}
-                  onClick={() => setInterestType("reparer")}
+                  className={`btn-toggle ${interestType === "fixed" ? "active" : ""}`}
+                  onClick={() => setInterestType("fixed")}
                 >
-                  réparer
+                  fixed
                 </button>
                 <button 
                   className={`btn-toggle ${interestType === "variable" ? "active" : ""}`}
@@ -177,9 +176,9 @@ export default function LoanCalculator() {
               </div>
             </div>
 
-            {/* INPUT 4 : TAUX D'INTÉRÊT FIXE EN ANNÉES */}
+            {/* INPUT 4: FIXED INTEREST RATE YEARS */}
             <div className="calc-input-group">
-              <label className="section-label">Taux d'intérêt fixe en années <span className="info-bubble">?</span></label>
+              <label className="section-label">Fixed interest rate period in years <span className="info-bubble">?</span></label>
               <div className="years-selector-grid">
                 {[5, 10, 15, 20].map((year) => (
                   <button
@@ -196,49 +195,49 @@ export default function LoanCalculator() {
           </div>
         </div>
 
-        {/* PARTIE DROITE : AFFICHAGE DES RÉSULTATS */}
+        {/* RIGHT SIDE: RESULTS DISPLAY */}
         <div className="calculator-card-right">
-          <h2 className="results-title">Votre résultat</h2>
+          <h2 className="results-title">Your result</h2>
 
           <div className="results-list">
             <div className="result-item">
-              <span>Montant du financement <span className="info-bubble">?</span></span>
-              <strong className="value-black">{loanAmount.toLocaleString("fr-FR")},00 €</strong>
+              <span>Financing amount <span className="info-bubble">?</span></span>
+              <strong className="value-black">€{loanAmount.toLocaleString("en-US")}.00</strong>
             </div>
             <div className="result-item">
-              <span>Montant total à payer</span>
-              <strong className="value-black">{totalPayable.toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €</strong>
+              <span>Total amount payable</span>
+              <strong className="value-black">€{totalPayable.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong>
             </div>
             <div className="result-item">
-              <span>Taux d'intérêt fixe pendant {fixedYears} ans</span>
-              <strong>{nominalRate.toFixed(2).replace(".", ",")} % pA</strong>
+              <span>Fixed interest rate for {fixedYears} years</span>
+              <strong>{nominalRate.toFixed(2)}% p.a.</strong>
             </div>
             <div className="result-item">
-              <span>Taux d'intérêt effectif pour toute la durée</span>
-              <strong>{effectiveRate.toFixed(2).replace(".", ",")} % pA</strong>
+              <span>Effective interest rate for full term</span>
+              <strong>{effectiveRate.toFixed(2)}% p.a.</strong>
             </div>
             <div className="result-item">
-              <span>Durée totale</span>
-              <strong>{totalYears} ans / jusqu'en juin {endYear}</strong>
+              <span>Total term</span>
+              <strong>{totalYears} years / until June {endYear}</strong>
             </div>
           </div>
 
           <hr className="results-divider" />
 
           <div className="monthly-rate-box">
-            <span className="box-label">tarif mensuel</span>
+            <span className="box-label">monthly installment</span>
             <div className="box-amount-row">
-              <span className="big-amount">{monthlyPayment.toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €</span>
+              <span className="big-amount">€{monthlyPayment.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
             </div>
-            <span className="box-subtext">taux d'intérêt fixe pendant {fixedYears} ans</span>
+            <span className="box-subtext">fixed interest rate for {fixedYears} years</span>
           </div>
 
           <div className="results-action-buttons">
             <button className="btn-submit-action">
-              prendre rendez-vous <span className="arrow-down">↓</span>
+              book an appointment <span className="arrow-down">↓</span>
             </button>
             <button className="btn-save-action">
-              Enregistrer le résultat <span className="arrow-right">→</span>
+              Save result <span className="arrow-right">→</span>
             </button>
           </div>
 

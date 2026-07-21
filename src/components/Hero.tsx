@@ -17,29 +17,29 @@ interface Slide {
 const slides: Slide[] = [
   {
     id: 1,
-    title: "Lancez votre projet de maison de rêve :",
+    title: "Launch your dream home project:",
     highlight: "CorusCredit",
-    subtitle: "Vous rêvez de devenir propriétaire ? Notre prêt immobilier vous le permet.",
-    buttonText: "Calculateur de prêt en ligne",
+    subtitle: "Dreaming of owning a home? Our mortgage financing makes it possible.",
+    buttonText: "Online loan calculator",
     buttonLink: "/calcul-pret",
     imageSrc: "/img/wohnhome.png"
   },
   {
     id: 2,
-    title: "Investissez pendant 6 mois et recevez jusqu'à 90 € de bonus.",
+    title: "Invest for 6 months and receive up to a €90 bonus.",
     highlight: "",
     subtitle: "",
-    warning: "Avertissement relatif aux risques : Les investissements dans des instruments financiers comportent des risques, y compris la perte possible du capital investi.",
-    buttonText: "Concernant la campagne",
+    warning: "Risk Warning: Investments in financial instruments involve risks, including the potential loss of the invested capital.",
+    buttonText: "About the campaign",
     buttonLink: "#",
     imageSrc: "/img/ACERNITROGAMINGHEADSET.png"
   },
   {
     id: 3,
-    title: "Pour tout le reste, vous avez besoin de :",
+    title: "For everything else, you need:",
     highlight: "CorusCredit",
-    subtitle: "Des voitures neuves aux rénovations : avec CorusCredit, financez tout ce dont vous avez besoin rapidement et facilement.",
-    buttonText: "Calculer le prêt",
+    subtitle: "From new cars to home renovations: finance everything you need quickly and easily with CorusCredit.",
+    buttonText: "Calculate loan",
     buttonLink: "/calcul-pret",
     imageSrc: "/img/sofa.png"
   }
@@ -62,7 +62,7 @@ export default function Hero() {
         <div className="hero-slider">
           {slides.map((slide, index) => (
             <div key={slide.id} className={`hero-slide ${index === current ? "active" : ""}`}>
-              {/* GAUCHE : TEXTES */}
+              {/* LEFT: TEXT CONTENT */}
               <div className="hero-content">
                 <h1 className="hero-title">
                   {slide.title} {slide.highlight && <span className="hero-highlight"><br/>{slide.highlight}</span>}
@@ -76,7 +76,7 @@ export default function Hero() {
                 </Link>
               </div>
 
-              {/* DROITE : IMAGE */}
+              {/* RIGHT: IMAGE */}
               <div className="hero-image-wrapper">
                 <img src={slide.imageSrc} alt={slide.highlight || "Slide Asset"} className="hero-img" />
               </div>
@@ -96,7 +96,7 @@ export default function Hero() {
               />
             ))}
           </div>
-          <button className="hero-next-arrow" onClick={() => setCurrent((prev) => (prev + 1) % slides.length)} aria-label="Suivant">
+          <button className="hero-next-arrow" onClick={() => setCurrent((prev) => (prev + 1) % slides.length)} aria-label="Next">
             <i className="fa-solid fa-play"></i>
           </button>
         </div>

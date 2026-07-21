@@ -8,9 +8,9 @@ export default function Footer() {
       <div className="footer-container">
         
         <div className="footer-links-grid">
-          {/* Colonne AIDE & CONTACT */}
+          {/* HELP & CONTACT Column */}
           <div className="footer-col">
-            <h3>Support CorusBank</h3>
+            <h3>CorusBank Support</h3>
             <ul>
               <li>
                 <Link href="tel:+43190202">
@@ -23,43 +23,42 @@ export default function Footer() {
                 </Link>
               </li>
               <li className="phone-line">
-                <span>Lun - Ven : 8h à 18h</span>
+                <span>Mon - Fri: 8am to 6pm</span>
               </li>
-              <li><Link href="#"><i className="fa-regular fa-circle-question icon-left"></i> FAQ & Lieux</Link></li>
+              <li><Link href="#"><i className="fa-regular fa-circle-question icon-left"></i> FAQ & Locations</Link></li>
             </ul>
           </div>
 
-          {/* Colonne SÉCURITÉ */}
+          {/* SECURITY Column */}
           <div className="footer-col">
-            <h3>Sécurité</h3>
+            <h3>Security</h3>
             <ul>
-              <li><Link href="#">Blocage de carte</Link></li>
-              <li><Link href="#">Protection des données</Link></li>
-              <li><Link href="#">Mentions légales</Link></li>
+              <li><Link href="#">Card Blocking</Link></li>
+              <li><Link href="#">Data Protection</Link></li>
+              <li><Link href="#">Legal Notice</Link></li>
             </ul>
           </div>
 
-          {/* Colonne À PROPOS */}
+          {/* ABOUT US Column */}
           <div className="footer-col">
             <h3>CorusBank</h3>
             <ul>
-              <li><Link href="#">À propos de nous</Link></li>
-              <li><Link href="#">Carrières</Link></li>
-              <li><Link href="#">Accessibilité</Link></li>
+              <li><Link href="#">About us</Link></li>
+              <li><Link href="#">Careers</Link></li>
+              <li><Link href="#">Accessibility</Link></li>
             </ul>
           </div>
         </div>
 
-        {/* BOUTON RETOUR EN HAUT */}
-        <button className="scroll-to-top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} aria-label="Retour en haut">
+        {/* SCROLL TO TOP BUTTON */}
+        <button className="scroll-to-top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} aria-label="Back to top">
           <i className="fa-solid fa-arrow-up"></i>
         </button>
 
-        {/* BAS DU FOOTER */}
-        <div className="footer-bottom" >
-          
-          <p style={{ fontSize: "12px", textAlign:"center", color: "#64748b", marginTop: "15px" }}>
-            &copy; {new Date().getFullYear()} CorusBank AG. Tous droits réservés.
+        {/* FOOTER BOTTOM */}
+        <div className="footer-bottom">
+          <p style={{ fontSize: "12px", textAlign: "center", color: "#64748b", marginTop: "15px" }}>
+            &copy; {new Date().getFullYear()} CorusBank AG. All rights reserved.
           </p>
         </div>
 

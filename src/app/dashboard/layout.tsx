@@ -14,7 +14,7 @@ function DashboardContent({ children }: { children: React.ReactNode }) {
   return ( 
     <div className="b99-master-container">
       
-      {/* HEADER VERSION DESKTOP */}
+      {/* DESKTOP HEADER */}
       <header className="b99-desktop-header desktop-only">
         <div className="b99-top-utility-bar">
           <div className="b99-brand-logo-zone">
@@ -28,36 +28,36 @@ function DashboardContent({ children }: { children: React.ReactNode }) {
           </div>
            
           <div className="b99-top-right-actions">
-            {/* <button className="utility-link"><i className="fa-solid fa-magnifying-glass"></i> Rechercher</button> */}
+            {/* <button className="utility-link"><i className="fa-solid fa-magnifying-glass"></i> Search</button> */}
            
             <div className="user-profile-pill">
               <i className="fa-regular fa-circle-user text-large"></i>
-              <span>{user ? `${user.firstname} ${user.lastname}` : "Utilisateur"}</span>
+              <span>{user ? `${user.firstname} ${user.lastname}` : "User"}</span>
             </div>
             <button onClick={logout} className="logout-action-btn">
-              <i className="fa-solid fa-power-off"></i> Déconnexion
+              <i className="fa-solid fa-power-off"></i> Log out
             </button>
           </div>
         </div>
 
-        {/* BANDEAU DE NAVIGATION JAUNE */}
+        {/* YELLOW NAVIGATION BAR */}
         <nav className="b99-desktop-navbar">
           <Link href="/dashboard" className={pathname === "/dashboard" ? "nav-item active" : "nav-item"}>
-            <i className="fa-solid fa-house"></i> Ma page d'accueil
+            <i className="fa-solid fa-house"></i> My Home
           </Link>
           <Link href="/dashboard/finance" className={pathname === "/dashboard/finance" ? "nav-item active" : "nav-item"}>
             <i className="fa-solid fa-wallet"></i> Finances
           </Link>
           <Link href="/dashboard/cartes" className="nav-item">
-            <i className="fa-solid fa-credit-card"></i> Cartes 
+            <i className="fa-solid fa-credit-card"></i> Cards 
           </Link>
           <Link href="/dashboard/details" className="nav-item">
-            <i className="fa-solid fa-gears"></i> Détails 
+            <i className="fa-solid fa-gears"></i> Details 
           </Link>
         </nav>
       </header>
 
-      {/* HEADER VERSION MOBILE */}
+      {/* MOBILE HEADER */}
       <header className="b99-mobile-header mobile-only">
         <div className="mobile-header-left">
           <button className="mobile-action-trigger"><i className="fa-solid fa-chevron-left"></i></button>
@@ -77,22 +77,22 @@ function DashboardContent({ children }: { children: React.ReactNode }) {
           <button onClick={logout} className="mobile-icon-btn"><i className="fa-solid fa-power-off"></i></button>
         </div>
 
-        {/* TIROIR DE NAVIGATION MOBILE */}
+        {/* MOBILE NAVIGATION DRAWER */}
         <nav className={`b99-mobile-drawer ${isMenuOpen ? "drawer-open" : ""}`}>
-          <Link href="/dashboard" onClick={() => setIsMenuOpen(false)}>Ma page d'accueil</Link>
+          <Link href="/dashboard" onClick={() => setIsMenuOpen(false)}>My Home</Link>
           <Link href="/dashboard/finance" onClick={() => setIsMenuOpen(false)}>Finances</Link>
-          <Link href="/dashboard/cartes" onClick={() => setIsMenuOpen(false)}>Cartes</Link>
-          <Link href="/dashboard/details" onClick={() => setIsMenuOpen(false)}>Détails</Link>
+          <Link href="/dashboard/cartes" onClick={() => setIsMenuOpen(false)}>Cards</Link>
+          <Link href="/dashboard/details" onClick={() => setIsMenuOpen(false)}>Details</Link>
         </nav>
       </header>
 
-      {/* SOUS-BARRE D'ONGLETS SUB-NAV MOBILE */}
+      {/* MOBILE SUB-NAV TABS */}
       <div className="b99-mobile-sub-tabs mobile-only">
-        <span className="sub-tab-link muted">Historique</span>
-        <span className="sub-tab-link active-yellow">Compte Courant</span>
+        <span className="sub-tab-link muted">History</span>
+        <span className="sub-tab-link active-yellow">Checking Account</span>
       </div>
 
-      {/* ZONE CENTRALE DU CONTENU */}
+      {/* CENTRAL CONTENT VIEWPORT */}
       <main className="b99-main-viewport">
         {children}
       </main>
